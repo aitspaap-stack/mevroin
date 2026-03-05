@@ -1,0 +1,1653 @@
+@import "tailwindcss";
+
+/* ========================================
+   ROOT VARIABLES & THEME
+======================================== */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Smooth Animation Curves */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Transition Durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 800ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ========================================
+   GLOBAL SMOOTH SCROLL & BASE
+======================================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Override for JS-based smooth scroll */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: #020617;
+  color: var(--foreground);
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU Acceleration for Smooth Animations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ========================================
+   SMOOTH TRANSITIONS - GLOBAL
+======================================== */
+
+/* Default smooth transitions for interactive elements */
+a,
+button,
+input,
+textarea,
+select {
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+/* Image transitions */
+img {
+  transition: transform var(--duration-slow) var(--ease-smooth),
+    opacity var(--duration-normal) var(--ease-smooth),
+    filter var(--duration-normal) var(--ease-smooth);
+}
+
+/* ========================================
+   CUSTOM FLOATING ANIMATIONS
+======================================== */
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateZ(0);
+  }
+
+  50% {
+    transform: translateY(-20px) translateZ(0);
+  }
+}
+
+@keyframes float-medium {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(1deg) translateZ(0);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(-1deg) translateZ(0);
+  }
+}
+
+@keyframes float-gentle {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1) translateZ(0);
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.02) translateZ(0);
+  }
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1) translateZ(0);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.05) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1) translateZ(0);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1) translateZ(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-medium {
+  animation: float-medium 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+
+@keyframes content-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.content-reveal {
+  opacity: 0;
+  animation: content-fade-in 1.5s ease-out 13.5s forwards;
+}
+
+.splash-seen .content-reveal {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+@keyframes reveal-word {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) translateZ(0);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateZ(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes reveal-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateZ(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}
+
+.animate-reveal-word {
+  animation: reveal-word 0.6s var(--ease-smooth) forwards;
+}
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+  transition: opacity var(--duration-slower) var(--ease-out-expo),
+    transform var(--duration-slower) var(--ease-out-expo),
+    filter var(--duration-slow) var(--ease-smooth);
+  will-change: opacity, transform;
+}
+
+.reveal.hidden-initial {
+  opacity: 0;
+  transform: translateY(40px) translateZ(0);
+  filter: blur(8px);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) translateZ(0);
+  filter: blur(0);
+}
+
+/* Directional Reveals - Smoother */
+.reveal-left.hidden-initial {
+  opacity: 0;
+  transform: translateX(-80px) translateZ(0);
+  filter: blur(8px);
+}
+
+.reveal-right.hidden-initial {
+  opacity: 0;
+  transform: translateX(80px) translateZ(0);
+  filter: blur(8px);
+}
+
+.reveal-bottom.hidden-initial {
+  opacity: 0;
+  transform: translateY(80px) translateZ(0);
+  filter: blur(8px);
+}
+
+.reveal-scale.hidden-initial {
+  opacity: 0;
+  transform: scale(0.85) translateZ(0);
+  filter: blur(8px);
+}
+
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-bottom.visible,
+.reveal-scale.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1) translateZ(0);
+  filter: blur(0);
+  transition: opacity 1s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo),
+    filter 0.6s var(--ease-smooth);
+}
+
+/* ========================================
+   STAGGER ANIMATION DELAYS
+======================================== */
+.delay-75 {
+  transition-delay: 75ms;
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-150 {
+  transition-delay: 150ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-250 {
+  transition-delay: 250ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+.delay-600 {
+  transition-delay: 600ms;
+}
+
+.delay-700 {
+  transition-delay: 700ms;
+}
+
+.delay-800 {
+  transition-delay: 800ms;
+}
+
+/* Stagger children animation */
+.stagger-children>* {
+  opacity: 0;
+  transform: translateY(20px) translateZ(0);
+  transition: opacity 0.5s var(--ease-out-expo),
+    transform 0.5s var(--ease-out-expo);
+}
+
+.stagger-children.visible>*:nth-child(1) {
+  transition-delay: 0ms;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.stagger-children.visible>*:nth-child(2) {
+  transition-delay: 75ms;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.stagger-children.visible>*:nth-child(3) {
+  transition-delay: 150ms;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.stagger-children.visible>*:nth-child(4) {
+  transition-delay: 225ms;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.stagger-children.visible>*:nth-child(5) {
+  transition-delay: 300ms;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.stagger-children.visible>*:nth-child(6) {
+  transition-delay: 375ms;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+/* ========================================
+   GLASSMORPHISM UTILITIES
+======================================== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.glass-card-sm {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.glass-card-sm:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
+}
+
+/* ========================================
+   SMOOTH HOVER EFFECTS
+======================================== */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-bounce),
+    box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px) translateZ(0);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hover-scale {
+  transition: transform var(--duration-normal) var(--ease-bounce);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02) translateZ(0);
+}
+
+.hover-glow {
+  transition: box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+/* ========================================
+   SMOOTH BUTTON ANIMATIONS
+======================================== */
+.btn-smooth {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.btn-smooth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.btn-smooth:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-smooth:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-smooth:active {
+  transform: translateY(0) scale(0.98) translateZ(0);
+}
+
+/* ========================================
+   LINK HOVER EFFECTS
+======================================== */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--duration-normal) var(--ease-smooth);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR
+======================================== */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hide Scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================
+   PARALLAX UTILITIES
+======================================== */
+.parallax-slow {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.parallax-medium {
+  will-change: transform;
+  transition: transform 0.08s linear;
+}
+
+.parallax-fast {
+  will-change: transform;
+  transition: transform 0.05s linear;
+}
+
+/* ========================================
+   FOCUS STATES - Accessibility
+======================================== */
+*:focus-visible {
+  outline: 2px solid rgba(6, 182, 212, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+======================================== */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   LOADING SKELETON ANIMATION
+======================================== */
+@keyframes skeleton-pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ========================================
+   SMOOTH TEXT SELECTION
+======================================== */
+::selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: inherit;
+}
+
+/* ========================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+======================================== */
+
+/* Touch device optimizations - KEEP SAME LOOK, just optimize */
+@media (hover: none) and (pointer: coarse) {
+
+  /* Keep hover effects but make them snappier */
+  .hover-lift:hover,
+  .hover-scale:hover,
+  .glass-card-sm:hover {
+    transition-duration: 200ms;
+  }
+
+  /* Slightly slower animations for smoother performance */
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-gentle {
+    animation-duration: 10s;
+  }
+
+  /* Slightly reduced blur for better performance */
+  .glass-panel,
+  .glass-card-sm {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Keep pulse-glow but slightly slower */
+  .animate-pulse-glow {
+    animation-duration: 4s;
+  }
+
+  /* Faster transitions for snappier feel */
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    transition-duration: 200ms;
+  }
+}
+
+/* Small screen optimizations */
+@media (max-width: 768px) {
+
+  /* Reduce scroll reveal distances for faster appearance */
+  .reveal.hidden-initial {
+    transform: translateY(20px) translateZ(0);
+  }
+
+  .reveal-left.hidden-initial,
+  .reveal-right.hidden-initial {
+    transform: translateX(40px) translateZ(0);
+  }
+
+  .reveal-bottom.hidden-initial {
+    transform: translateY(40px) translateZ(0);
+  }
+
+  /* Faster reveal transitions on mobile */
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-bottom,
+  .reveal-scale {
+    transition-duration: 500ms;
+  }
+
+  .reveal-left.visible,
+  .reveal-right.visible,
+  .reveal-bottom.visible,
+  .reveal-scale.visible {
+    transition-duration: 600ms;
+  }
+
+  /* Reduce blur for performance */
+  .reveal.hidden-initial,
+  .reveal-left.hidden-initial,
+  .reveal-right.hidden-initial,
+  .reveal-bottom.hidden-initial,
+  .reveal-scale.hidden-initial {
+    filter: blur(4px);
+  }
+}
+
+/* Very small screens - keep effects but optimize */
+@media (max-width: 480px) {
+
+  /* Slightly reduced reveal distances */
+  .reveal.hidden-initial,
+  .reveal-left.hidden-initial,
+  .reveal-right.hidden-initial,
+  .reveal-bottom.hidden-initial {
+    transform: translateY(25px) translateZ(0);
+    filter: blur(4px);
+  }
+
+  /* Keep floating animations but slower for smoother performance */
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-gentle {
+    animation-duration: 12s;
+  }
+}
+
+/* iOS-specific scroll fixes */
+@supports (-webkit-touch-callout: none) {
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Fix for iOS momentum scrolling */
+  .custom-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Android Chrome optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* ========================================
+   COMPREHENSIVE MOBILE RESPONSIVE OPTIMIZATIONS
+======================================== */
+
+/* Tablet optimizations (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+
+  /* Navbar adjustments */
+  nav {
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Section padding adjustments */
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+/* Mobile - Large (641px - 768px) */
+@media (max-width: 768px) {
+
+  /* Reset scroll padding for mobile */
+  html {
+    scroll-padding-top: 60px;
+  }
+
+  /* Mobile text sizing */
+  h1 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
+    line-height: 1.4 !important;
+  }
+
+  p {
+    font-size: clamp(0.875rem, 3.5vw, 1rem) !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Mobile-specific spacing */
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Grid adjustments - force single column */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Navbar mobile optimization */
+  nav {
+    top: 0.5rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  nav img {
+    max-height: 1.5rem !important;
+  }
+
+  /* Button sizing */
+  button {
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Form inputs */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+    /* Prevents zoom on iOS */
+    padding: 0.875rem 1rem !important;
+  }
+
+  /* Card spacing */
+  .rounded-2xl,
+  .rounded-3xl {
+    border-radius: 1rem !important;
+  }
+
+  /* Image containment */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Reduce glassmorphism blur on mobile for performance */
+  .glass-panel,
+  .glass-card-sm,
+  [class*="backdrop-blur"] {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  /* Stat cards - better mobile layout */
+  .grid.grid-cols-2 {
+    gap: 0.75rem !important;
+  }
+
+  /* Footer - stack vertically on mobile */
+  footer .flex {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* Mobile - Medium (481px - 640px) */
+@media (max-width: 640px) {
+
+  /* Tighter spacing for smaller screens */
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Container padding */
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl,
+  .max-w-2xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Typography refinements */
+  h1 {
+    font-size: clamp(1.5rem, 7vw, 2rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+  }
+
+  /* Card padding reduction */
+  .p-6,
+  .p-8 {
+    padding: 1rem !important;
+  }
+
+  .p-10 {
+    padding: 1.25rem !important;
+  }
+
+  /* Gap adjustments */
+  .gap-6,
+  .gap-8 {
+    gap: 1rem !important;
+  }
+
+  .gap-12 {
+    gap: 1.5rem !important;
+  }
+
+  /* Margin adjustments */
+  .mb-6,
+  .mb-8 {
+    margin-bottom: 1rem !important;
+  }
+
+  .mb-12,
+  .mb-16 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Stats grid - single column on very small screens */
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile - Small (320px - 480px) */
+@media (max-width: 480px) {
+
+  /* Extra tight spacing */
+  section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* Minimum padding */
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl,
+  .max-w-2xl {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Typography - minimum readable sizes */
+  h1 {
+    font-size: clamp(1.375rem, 6vw, 1.75rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.125rem, 4.5vw, 1.5rem) !important;
+  }
+
+  h3 {
+    font-size: clamp(1rem, 4vw, 1.25rem) !important;
+  }
+
+  p,
+  li {
+    font-size: clamp(0.8125rem, 3vw, 0.875rem) !important;
+  }
+
+  /* Minimal card padding */
+  .p-6,
+  .p-8,
+  .p-10 {
+    padding: 0.875rem !important;
+  }
+
+  /* Tighter gaps */
+  .gap-4,
+  .gap-6,
+  .gap-8 {
+    gap: 0.75rem !important;
+  }
+
+  /* Button adjustments */
+  button {
+    padding: 0.625rem 1rem !important;
+    font-size: 0.8125rem !important;
+  }
+
+  /* Navbar ultra-compact */
+  nav {
+    top: 0.25rem !important;
+    padding: 0.375rem 0.5rem !important;
+  }
+
+  nav img {
+    max-height: 1.25rem !important;
+  }
+}
+
+/* ========================================
+   MOBILE-SPECIFIC COMPONENT OPTIMIZATIONS
+======================================== */
+
+/* ScrollytellingHero Mobile */
+@media (max-width: 768px) {
+
+  /* Ensure hero takes proper viewport height on mobile */
+  .scrollytelling-hero-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* Dynamic viewport height for mobile browsers */
+  }
+
+  /* Text positioning in hero */
+  .scrollytelling-text {
+    padding: 1.5rem !important;
+    max-width: 100% !important;
+  }
+
+  /* CTA buttons in hero - stack vertically */
+  .hero-cta-group {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+  }
+
+  .hero-cta-group button {
+    width: 100% !important;
+  }
+}
+
+/* ProjectPyramid Mobile - Orbital Layout */
+@media (max-width: 768px) {
+
+  /* Center hub sizing */
+  .pyramid-hub {
+    width: 100px !important;
+    height: 100px !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Orbiting project circles - smaller */
+  .project-planet {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 0.625rem !important;
+  }
+
+  /* Reduce orbit radius for mobile */
+  .orbit-container {
+    --orbit-radius: 120px;
+  }
+
+  /* Modal full-screen on mobile */
+  .project-modal {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .project-modal-content {
+    padding: 1rem !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Close button positioning in modal */
+  .modal-close-btn {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pyramid-hub {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 0.625rem !important;
+  }
+
+  .project-planet {
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 0.5rem !important;
+  }
+
+  .orbit-container {
+    --orbit-radius: 100px;
+  }
+}
+
+/* PedigreeCarousel Mobile */
+@media (max-width: 768px) {
+  .pedigree-carousel {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+  }
+
+  .pedigree-card {
+    scroll-snap-align: center !important;
+    min-width: 280px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Profile photos */
+  .pedigree-photo {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pedigree-card {
+    min-width: 240px !important;
+  }
+
+  .pedigree-photo {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+
+/* RoadmapTimeline Mobile */
+@media (max-width: 768px) {
+  .roadmap-timeline {
+    padding-left: 1rem !important;
+  }
+
+  /* Timeline vertical line */
+  .timeline-line {
+    left: 0 !important;
+  }
+
+  /* Timeline items - single column */
+  .timeline-item {
+    padding-left: 2rem !important;
+  }
+
+  .timeline-dot {
+    left: -0.5rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}
+
+/* Project Cards (3 Pillars) Mobile */
+@media (max-width: 768px) {
+
+  /* Force single column layout */
+  .grid.grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Pillar cards - full width on mobile */
+  .pillar-card {
+    width: 100% !important;
+  }
+
+  /* Image heights */
+  .pillar-card img {
+    height: 200px !important;
+    object-fit: cover !important;
+  }
+
+  /* Metrics - horizontal layout on mobile */
+  .pillar-metrics {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pillar-card img {
+    height: 160px !important;
+  }
+}
+
+/* About Section Mobile */
+@media (max-width: 768px) {
+
+  /* Mission/Stats split - stack vertically */
+  .about-split {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* Platform Section (4 Cards) Mobile */
+@media (max-width: 768px) {
+
+  /* Force single column for platform cards */
+  .platform-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Card heights - auto on mobile */
+  .platform-card {
+    height: auto !important;
+  }
+
+  /* Icon sizes */
+  .platform-icon {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+}
+
+/* Book Demo Form Mobile */
+@media (max-width: 768px) {
+  .book-demo-section {
+    padding: 2rem 1rem !important;
+  }
+
+  .book-demo-form {
+    max-width: 100% !important;
+  }
+
+  /* Form spacing */
+  .form-field {
+    margin-bottom: 1rem !important;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100% !important;
+    padding: 1rem !important;
+  }
+}
+
+/* Menu Overlay Mobile */
+@media (max-width: 768px) {
+  .menu-overlay {
+    padding: 2rem 1rem !important;
+  }
+
+  .menu-overlay button {
+    font-size: 2rem !important;
+    padding: 1rem !important;
+  }
+
+  .menu-close {
+    top: 1.5rem !important;
+    right: 1.5rem !important;
+  }
+}
+
+/* ========================================
+   MOBILE TOUCH INTERACTIONS
+======================================== */
+
+/* Better touch targets */
+@media (max-width: 768px) {
+
+  /* Minimum touch target size (44x44px recommended) */
+  button,
+  a,
+  input[type="submit"],
+  input[type="button"],
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Larger tap area for small icons */
+  .icon-btn {
+    padding: 0.75rem !important;
+  }
+
+  /* Remove hover effects on touch devices */
+  @media (hover: none) {
+
+    .hover\:scale-105:hover,
+    .hover\:scale-110:hover,
+    .hover\:-translate-y-1:hover,
+    .hover\:-translate-y-2:hover {
+      transform: none !important;
+    }
+
+    /* Keep active states for tactile feedback */
+    .hover\:scale-105:active {
+      transform: scale(0.98) !important;
+    }
+
+    button:active {
+      transform: scale(0.97) !important;
+    }
+  }
+}
+
+/* ========================================
+   MOBILE PERFORMANCE - REDUCE ANIMATIONS
+======================================== */
+
+@media (max-width: 768px) {
+
+  /* Disable 3D transforms on mobile for performance */
+  .tilt-effect,
+  .transform-3d {
+    transform: none !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+  }
+
+  /* Reduce floating animations on mobile */
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-gentle {
+    animation-duration: 12s !important;
+  }
+
+  /* Reduce particle effects on mobile */
+  .particle-system {
+    display: none !important;
+  }
+
+  /* Simpler gradients for performance */
+  .animate-gradient {
+    animation: none !important;
+    background-position: center !important;
+  }
+}
+
+/* ========================================
+   MOBILE SAFE AREA (Notch Support)
+======================================== */
+
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    body {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    nav {
+      padding-left: max(1rem, env(safe-area-inset-left)) !important;
+      padding-right: max(1rem, env(safe-area-inset-right)) !important;
+    }
+
+    footer {
+      padding-bottom: max(2rem, env(safe-area-inset-bottom)) !important;
+    }
+
+    .modal-close-btn {
+      top: max(0.5rem, env(safe-area-inset-top)) !important;
+      right: max(0.5rem, env(safe-area-inset-right)) !important;
+    }
+  }
+}
+
+/* ========================================
+   MOBILE LANDSCAPE ORIENTATION
+======================================== */
+
+@media (max-width: 896px) and (orientation: landscape) {
+
+  /* Reduce vertical padding in landscape */
+  section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* Hero section - fit in landscape */
+  .scrollytelling-hero-section {
+    min-height: 100vh;
+  }
+
+  /* Navbar more compact in landscape */
+  nav {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+}
+
+/* ========================================
+   MOBILE ACCESSIBILITY
+======================================== */
+
+@media (max-width: 768px) {
+
+  /* Larger focus indicators on mobile */
+  *:focus-visible {
+    outline-width: 3px !important;
+    outline-offset: 3px !important;
+  }
+
+  /* Ensure text is readable */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Better contrast for links */
+  a {
+    text-decoration-skip-ink: auto;
+  }
+}
+
+/* ========================================
+   MOBILE SECTION COMPACTNESS - REDUCED CLUTTER
+======================================== */
+
+@media (max-width: 768px) {
+
+  /* Global section padding reduction for mobile */
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Compact card/box padding */
+  section .p-6 {
+    padding: 1.25rem !important;
+  }
+
+  section .p-8,
+  section .md\:p-8 {
+    padding: 1.5rem !important;
+  }
+
+  section .p-10,
+  section .md\:p-10 {
+    padding: 1.5rem !important;
+  }
+
+  /* Smaller rounded corners */
+  section .rounded-2xl {
+    border-radius: 1rem !important;
+  }
+
+  section .rounded-3xl {
+    border-radius: 1.25rem !important;
+  }
+
+  /* Compact grid gaps */
+  section .gap-6,
+  section .md\:gap-6 {
+    gap: 1rem !important;
+  }
+
+  section .gap-8,
+  section .md\:gap-8 {
+    gap: 1rem !important;
+  }
+
+  /* Reduce spacing between sections */
+  section .mb-12,
+  section .md\:mb-12 {
+    margin-bottom: 2rem !important;
+  }
+
+  section .mb-16,
+  section .md\:mb-16 {
+    margin-bottom: 2rem !important;
+  }
+
+  /* Compact headings */
+  section h2 {
+    font-size: 1.875rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  section h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Smaller text for better fit */
+  section p.text-lg,
+  section p.md\:text-lg {
+    font-size: 0.938rem !important;
+  }
+
+  section p.text-xl,
+  section p.md\:text-xl {
+    font-size: 1rem !important;
+  }
+
+  /* Compact list spacing */
+  section .space-y-4>*+* {
+    margin-top: 0.75rem !important;
+  }
+
+  section .space-y-6>*+* {
+    margin-top: 1rem !important;
+  }
+
+  /* Reduce icon sizes */
+  section .w-12.h-12 {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  section .w-14.h-14 {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+
+  /* Compact inline decorations */
+  section .inline-flex .w-12 {
+    width: 2rem !important;
+  }
+
+  section .inline-flex .gap-3 {
+    gap: 0.75rem !important;
+  }
+
+  section .inline-flex.mb-6 {
+    margin-bottom: 1.25rem !important;
+  }
+
+  /* Smaller metric/stat text */
+  section .text-3xl {
+    font-size: 1.75rem !important;
+  }
+
+  section .text-4xl,
+  section .md\:text-4xl {
+    font-size: 1.875rem !important;
+  }
+
+  section .text-5xl,
+  section .md\:text-5xl {
+    font-size: 2.25rem !important;
+  }
+
+  section .text-6xl,
+  section .md\:text-6xl {
+    font-size: 2.25rem !important;
+  }
+
+  /* Hide decorative blur circles for cleaner mobile look */
+  section .absolute.-top-20.-right-20,
+  section .absolute.-top-20.-left-20 {
+    opacity: 0.5 !important;
+    transform: scale(0.7) !important;
+  }
+
+  /* Compact button/input padding */
+  section button,
+  section input,
+  section textarea {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* Reduce excessive shadows */
+  section .shadow-lg {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  section .shadow-xl,
+  section .shadow-2xl {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  /* Make hover effects less intense */
+  section .hover\:shadow-\[0_0_60px_rgba\(6\,182\,212\,0\.2\)\]:hover {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.15) !important;
+  }
+
+  section .hover\:shadow-\[0_0_60px_rgba\(239\,68\,68\,0\.2\)\]:hover {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.15) !important;
+  }
+
+  section .hover\:shadow-\[0_0_60px_rgba\(16\,185\,129\,0\.2\)\]:hover {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.15) !important;
+  }
+
+  /* Compact max-width containers */
+  section .max-w-6xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
