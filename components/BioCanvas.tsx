@@ -67,6 +67,17 @@ export default function BioCanvas() {
     }, []);
 
     return (
-        <canvas ref={canvasRef} className="fixed inset-0 w-full h-full -z-10 pointer-events-none" />
+        <>
+            <canvas ref={canvasRef} className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-230 h-130 -z-10 pointer-events-none" />
+
+            {/* Small Floating Light Dots */}
+            <div className="fixed pointer-events-none -z-10 top-[20%] left-[15%] w-1.5 h-1.5 rounded-full bg-teal-300 shadow-[0_0_12px_2px_rgba(45,212,191,0.8)] animate-pulse" style={{ animationDuration: '3s' }} />
+            <div className="fixed pointer-events-none -z-10 bottom-[25%] right-[20%] w-2 h-2 rounded-full bg-blue-300 shadow-[0_0_15px_3px_rgba(96,165,250,0.8)] animate-pulse" style={{ animationDuration: '4s' }} />
+            <div className="fixed pointer-events-none -z-10 top-[10%] right-[30%] w-1 h-1 rounded-full bg-purple-300 shadow-[0_0_10px_2px_rgba(192,132,252,0.8)] animate-pulse" style={{ animationDuration: '5s' }} />
+            <div className="fixed pointer-events-none -z-10 bottom-[15%] left-[25%] w-2.5 h-2.5 rounded-full bg-cyan-300 shadow-[0_0_15px_3px_rgba(34,211,238,0.8)] animate-pulse" style={{ animationDuration: '6s' }} />
+            <div className="fixed pointer-events-none -z-10 top-[50%] left-[80%] w-1.5 h-1.5 rounded-full bg-indigo-300 shadow-[0_0_12px_2px_rgba(129,140,248,0.8)] animate-pulse" style={{ animationDuration: '4.5s' }} />
+            <div className="fixed pointer-events-none -z-10 top-[70%] left-[10%] w-1.5 h-1.5 rounded-full bg-pink-300 shadow-[0_0_12px_2px_rgba(244,114,182,0.8)] animate-pulse" style={{ animationDuration: '3.5s' }} />
+            <div className="fixed pointer-events-none -z-10 top-[40%] right-[10%] w-2 h-2 rounded-full bg-emerald-300 shadow-[0_0_15px_3px_rgba(52,211,153,0.8)] animate-pulse" style={{ animationDuration: '5.5s' }} />
+        </>
     );
 }

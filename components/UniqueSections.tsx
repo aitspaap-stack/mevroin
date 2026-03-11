@@ -41,8 +41,8 @@ export const PedigreeCarousel = () => {
                     translateZ = -200;
                 }
 
-                const experiences = member.experience.split(',').map(s => s.trim()).filter(s => s.length > 0);
-                const awards = member.award ? member.award.split(',').map(s => s.trim()).filter(s => s.length > 0) : [];
+                const hasExperience = member.experience && member.experience.trim().length > 0;
+                const hasAwards = member.award && member.award.trim().length > 0;
 
                 return (
                     <div
@@ -79,43 +79,35 @@ export const PedigreeCarousel = () => {
                             </div>
                         </div>
 
-                        <div className="text-center mb-6 relative z-10">
+                        <div className="text-center mb-6 relative z-10 flex-shrink-0">
                             <h4 className="text-3xl font-black text-white mb-2 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">{member.name}</h4>
-                            <div className="inline-block px-4 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-                                <p className="text-cyan-200 text-xs font-black uppercase tracking-[0.25em]">{member.role}</p>
+                            <div className="inline-block px-4 py-1 rounded-full border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                                <p className="text-white text-xs font-black uppercase tracking-[0.25em]">{member.role}</p>
                             </div>
                         </div>
 
-                        <div className="w-full flex flex-col gap-5 text-left border-t border-white/5 pt-5 relative z-10">
-
-                            <div>
-                                <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" />
-                                    <p className="text-[9px] text-cyan-400/70 uppercase tracking-widest font-bold">EXPERIENCE DATABASE</p>
-                                </div>
-                                <ul className="space-y-2.5">
-                                    {experiences.map((pt, idx) => (
-                                        <li key={idx} className="flex items-start gap-2 text-sm text-slate-200 leading-relaxed font-mono font-medium">
-                                            <span className="text-cyan-400 mt-1 shadow-[0_0_8px_rgba(34,211,238,0.4)]">›</span>
-                                            <span>{pt}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            {awards.length > 0 && (
+                        <div className="w-full flex flex-col gap-6 text-left border-t border-white/5 pt-5 relative z-10 flex-grow overflow-hidden">
+                            {hasExperience && (
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <div className="w-1 h-1 bg-amber-400 rounded-full animate-pulse" />
-                                        <p className="text-[9px] text-amber-500/70 uppercase tracking-widest font-bold">HONORS & AWARDS</p>
+                                        <div className="w-1 h-1 bg-white rounded-full" />
+                                        <p className="text-[9px] text-white/50 uppercase tracking-widest font-bold">EXPERIENCE DATABASE</p>
                                     </div>
-                                    <ul className="space-y-2.5">
-                                        {awards.map((pt, idx) => (
-                                            <li key={idx} className="flex items-start gap-2 text-sm text-amber-100 leading-relaxed font-mono font-bold">
-                                                <span className="text-amber-400 mt-1 shadow-[0_0_10px_rgba(251,191,36,0.4)]">★</span>
-                                                <span>{pt}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    <p className="text-sm text-white/90 leading-relaxed font-mono font-medium">
+                                        {member.experience}
+                                    </p>
+                                </div>
+                            )}
+                            
+                            {hasAwards && (
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="w-1 h-1 bg-white rounded-full" />
+                                        <p className="text-[9px] text-white/50 uppercase tracking-widest font-bold">HONORS & AWARDS</p>
+                                    </div>
+                                    <p className="text-sm text-white/90 leading-relaxed font-mono font-bold">
+                                        {member.award}
+                                    </p>
                                 </div>
                             )}
                         </div>

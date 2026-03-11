@@ -36,7 +36,7 @@ const STORY_BEATS: StoryBeat[] = [
         range: [0.2, 0.35],
         title: "Mechanistic + AI Simulation Models",
         subtitle: "Combine mechanistic disease models with data-driven learning to simulate progression/response and quantify risk—beyond black-box predictions.",
-        align: "right",
+        align: "left",
         position: "center",
         frameIndex: 1,
     },
@@ -52,7 +52,7 @@ const STORY_BEATS: StoryBeat[] = [
         range: [0.6, 0.75],
         title: "Privacy-First Data Fabric (De-ID + Synthetic)",
         subtitle: "Enable collaboration, validation, and model development using de-identified data and privacy-safe synthetic datasets—without exposing patient identities.",
-        align: "right",
+        align: "left",
         position: "center",
         frameIndex: 3,
     },
@@ -86,8 +86,8 @@ const FRAME_IMAGES = [
     '/sequence/frame_02.png',
     '/sequence/frame_03.png',
     '/sequence/frame_04.png',
-    '/sequence/frame_0d5.png',
-    '/sequence/frame_0ss45.png',
+    '/sequence/frame_03.png',
+    '/sequence/frame_05.png',
 ];
 
 const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) => {
@@ -203,11 +203,15 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
         let transitionProgress = 0;
         let currentFrameIndex = 0;
         let nextFrameIndex = 0;
+        let currentBeatAlign = 'center';
+        let nextBeatAlign = 'center';
 
         if (currentBeatIndex !== -1) {
             currentFrameIndex = STORY_BEATS[currentBeatIndex].frameIndex;
             nextFrameIndex = currentFrameIndex;
             transitionProgress = 0;
+            currentBeatAlign = STORY_BEATS[currentBeatIndex].align;
+            nextBeatAlign = currentBeatAlign;
         } else {
             for (let i = 0; i < STORY_BEATS.length - 1; i++) {
                 const prevBeat = STORY_BEATS[i];
@@ -215,6 +219,8 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                 if (progress > prevBeat.range[1] && progress < nextBeat.range[0]) {
                     currentFrameIndex = prevBeat.frameIndex;
                     nextFrameIndex = nextBeat.frameIndex;
+                    currentBeatAlign = prevBeat.align;
+                    nextBeatAlign = nextBeat.align;
 
                     const gapStart = prevBeat.range[1];
                     const gapEnd = nextBeat.range[0];
@@ -361,37 +367,43 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
         const currentImg = imagesRef.current[currentFrameIndex];
         const nextImg = imagesRef.current[nextFrameIndex];
 
+        const getOffsetX = (align: string) => {
+            if (isMobile) return 0;
+            if (align === 'left') return rect.width * 0.25;
+            if (align === 'right') return -rect.width * 0.25;
+            return 0;
+        };
+
         if (imagesLoaded && currentImg) {
             const isTransitioning = transitionProgress > 0 && transitionProgress < 1;
 
             if (!isTransitioning && transitionProgress === 0) {
                 const ambientScale = 1 + withinBeatProgress * 0.1;
-                drawImageWithTransform(currentImg, ambientScale, 0, 0, 0, 1);
+                drawImageWithTransform(currentImg, ambientScale, getOffsetX(currentBeatAlign), 0, 0, 1);
             } else if (isTransitioning) {
                 const slowEase = (t: number) => {
-                    if (t < 0.5) {
-                        return 16 * t * t * t * t * t;
-                    } else {
-                        return 1 - Math.pow(-2 * t + 2, 5) / 2;
-                    }
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
                 };
 
                 const nextAlpha = slowEase(transitionProgress);
                 const currentAlpha = 1 - nextAlpha;
 
                 const currentScale = 1 + withinBeatProgress * 0.15;
-
                 const nextScale = 0.9 + nextAlpha * 0.1;
+
+                const currOffset = getOffsetX(currentBeatAlign);
+                const nextOffset = getOffsetX(nextBeatAlign);
+                const currentOffsetX = currOffset + (nextOffset - currOffset) * nextAlpha;
 
                 const particleIntensity = Math.sin(transitionProgress * Math.PI) * 0.7;
                 drawMorphParticles(transitionProgress, particleIntensity);
 
                 const exitAlpha = scrollProgress > 0.85 ? Math.max(0, 1 - (scrollProgress - 0.85) * 6.66) : 1;
-                drawImageWithTransform(currentImg, currentScale, 0, 0, 0, currentAlpha * exitAlpha);
+                drawImageWithTransform(currentImg, currentScale, currentOffsetX, 0, 0, currentAlpha * exitAlpha);
 
                 if (nextImg && currentFrameIndex !== nextFrameIndex && nextAlpha > 0.001) {
                     const exitAlpha = scrollProgress > 0.85 ? Math.max(0, 1 - (scrollProgress - 0.85) * 6.66) : 1;
-                    drawImageWithTransform(nextImg, nextScale, 0, 0, 0, nextAlpha * exitAlpha);
+                    drawImageWithTransform(nextImg, nextScale, currentOffsetX, 0, 0, nextAlpha * exitAlpha);
                 }
             } else {
                 const targetImg = currentImg;
@@ -400,7 +412,7 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
 
                 if (targetImg) {
                     const exitAlpha = scrollProgress > 0.85 ? Math.max(0, 1 - (scrollProgress - 0.85) * 6.66) : 1;
-                    drawImageWithTransform(targetImg, ambientScale, 0, 0, 0, exitAlpha);
+                    drawImageWithTransform(targetImg, ambientScale, getOffsetX(currentBeatAlign), 0, 0, exitAlpha);
                 }
             }
         } else {
@@ -1245,7 +1257,7 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                             const range = beat.range;
                             const localWithinBeatProgress = (scrollProgress - range[0]) / (range[1] - range[0]);
 
-                            const fadeRange = 0.15;
+                            const fadeRange = 0.35;
                             if (localWithinBeatProgress < fadeRange) {
                                 opacity = localWithinBeatProgress / fadeRange;
                             } else if (localWithinBeatProgress > (1 - fadeRange)) {

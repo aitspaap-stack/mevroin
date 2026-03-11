@@ -121,8 +121,8 @@ const SplashScreen: React.FC = () => {
                                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 10l5-5m-5 5l-5-5m5 5l5 5m-5-5l-5 5' stroke='%2306b6d4' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E")` }} />
                                     <Image src="/Photos/AI Mevreon Platform Slide a1.jpg.jpeg" alt="Module A1" fill className="object-contain scale-x-110" priority />
                                     <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-cyan-400/60" />
-                                    <div className="absolute top-2 left-2 text-[8px] text-cyan-400 font-mono opacity-40">ALPHA_UNIT_1</div>
-                                    <div className="absolute bottom-2 right-2 text-[6px] text-cyan-400/30 font-mono tracking-tighter">0x4F_A1_STABLE</div>
+                                    <div className="absolute top-2 left-2 text-[8px] text-cyan-400 font-mono opacity-40"></div>
+                                    <div className="absolute bottom-2 right-2 text-[6px] text-cyan-400/30 font-mono tracking-tighter"></div>
                                 </div>
                                 <span className={`text-[10px] lg:text-xs tracking-[0.5em] text-cyan-400 font-mono font-bold text-center transition-all duration-1000 ${stage === "a1_grid" || stage === "a2_hero" || stage === "a2_grid" || stage === "a3_hero" || stage === "a3_grid" ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>Fragmented Data Ingestion</span>
                             </div>
@@ -139,7 +139,7 @@ const SplashScreen: React.FC = () => {
                                     <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-cyan-500" />
                                     <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-cyan-500" />
                                     <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-cyan-500" />
-                                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[6px] text-cyan-400/50 font-mono">CPU_LOAD: 2.45ms // CORE_ID: MV-9000</div>
+                                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[6px] text-cyan-400/50 font-mono"></div>
                                     <div className="absolute top-0 inset-x-0 h-[1px] bg-cyan-400/40 blur-sm animate-[scan_2s_linear_infinite]" />
                                 </div>
                                 <span className={`text-[11px] lg:text-sm tracking-[0.5em] text-cyan-500 font-mono font-bold text-center drop-shadow-[0_0_8px_rgba(6,182,212,0.6)] transition-all duration-1000 ${stage === "a2_grid" || stage === "a3_hero" || stage === "a3_grid" ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>Mevreon Platform Core</span>
@@ -155,7 +155,7 @@ const SplashScreen: React.FC = () => {
                                     <Image src="/Photos/AI Mevreon Platform Slide a3.jpg.jpeg" alt="Module A3" fill className="object-contain scale-x-110" priority />
                                     <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-cyan-400/60" />
                                     <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-cyan-400/60" />
-                                    <div className="absolute top-2 right-2 text-[8px] text-cyan-400 font-mono opacity-40">GAMMA_R_A3</div>
+                                    <div className="absolute top-2 right-2 text-[8px] text-cyan-400 font-mono opacity-40"></div>
                                 </div>
                                 <span className={`text-[10px] lg:text-xs tracking-[0.5em] text-cyan-400 font-mono font-bold text-center opacity-60 transition-all duration-1000 ${stage === "a3_grid" ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>Synthesis Engine</span>
                             </div>
@@ -175,7 +175,7 @@ const SplashScreen: React.FC = () => {
                                     <Image src="/Photos/AI Mevreon Platfsormb1.jpeg" alt="Lower Base B1" fill className="object-contain scale-x-110" priority />
                                     <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-cyan-400/60" />
                                     <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-cyan-400/60" />
-                                    <div className="absolute bottom-2 left-2 text-[8px] text-cyan-400 font-mono opacity-40">BASE_INIT_B1</div>
+                                    <div className="absolute bottom-2 left-2 text-[8px] text-cyan-400 font-mono opacity-40"></div>
                                 </div>
                                 <span className={`text-[11px] lg:text-sm tracking-[0.7em] text-cyan-400 font-mono font-bold text-center opacity-70 transition-all duration-1000 ${stage === "b1_grid" || stage === "b2_hero" || stage === "b2_grid" || stage === "complete" ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>AI-Factory Simulation Layer</span>
                             </div>
@@ -189,7 +189,7 @@ const SplashScreen: React.FC = () => {
                                     <Image src="/Photos/AI Mevreon Platform Slide b2.jpg.jpeg" alt="Module B2" fill className="object-contain scale-x-110" priority />
                                     <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-cyan-400/60" />
                                     <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-cyan-400/60" />
-                                    <div className="absolute bottom-2 right-2 text-[8px] text-cyan-400 font-mono opacity-40">GAMMA_R_B2</div>
+                                    <div className="absolute bottom-2 right-2 text-[8px] text-cyan-400 font-mono opacity-40"></div>
                                 </div>
                                 <span className={`text-[10px] lg:text-xs tracking-[0.5em] text-cyan-400 font-mono font-bold text-center opacity-60 transition-all duration-1000 ${stage === "b2_grid" || stage === "complete" ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>Decision Packs</span>
 
