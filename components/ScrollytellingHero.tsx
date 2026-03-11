@@ -262,14 +262,23 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                 drawWidth = drawHeight * imgRatio;
             }
 
-            const centerX = rect.width / 2 + offsetX;
+            const finalScale = isMobile ? scale * 0.85 : scale;
+            let centerX = rect.width / 2 + offsetX;
+
+            if (!isMobile) {
+                if (offsetX > 0) {
+                    centerX = rect.width - 50 - (drawWidth / 2) * finalScale;
+                } else if (offsetX < 0) {
+                    centerX = 50 + (drawWidth / 2) * finalScale;
+                }
+            }
+
             const centerY = isMobile
                 ? rect.height * 0.28 + offsetY
                 : rect.height / 2 + offsetY + 50;
 
             ctx.translate(centerX, centerY);
             ctx.rotate(rotation);
-            const finalScale = isMobile ? scale * 0.85 : scale;
             ctx.scale(finalScale, finalScale);
 
             ctx.drawImage(img, -drawWidth / 2, -drawHeight / 2, drawWidth, drawHeight);
@@ -1389,9 +1398,7 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                                 style={{ transform: `translateY(${scrollProgress * 48}px)` }}
                             />
                         </div>
-                        <span className="text-[10px] text-white/30 tracking-[0.3em] uppercase">
-                            Scroll
-                        </span>
+                        <span className="sr-only">Scroll</span>
                     </div>
                 </div>
             </div>
