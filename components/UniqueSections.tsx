@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import NextImage from "next/image";
 
 
-export const PedigreeCarousel = () => {
+export const TeamSection = () => {
     const team = [
         { name: "Nishant Agrawal", role: "Co-Founder & CEO", experience: "ex-intel Principal Scientist, LLMs on 10k+ GPUs, 22+ years leading AI/HPC innovation, 10+ patents & 20+ publications", award: "Gordon Bell Prize Finalist(2024), BRICS Young Scientist(Top-10 India)", img: "/Nishant.png" },
         { name: "TBA", role: "Co-Founder", experience: "Chief Scientist - HPC & AI for Science, 20+ years in Scientific Computing", award: "Gordon Bell Prize Winner(COVID-19 therapeutics), Best Paper Award(SC, MLSys, ICLR)", img: "" },
@@ -176,6 +176,45 @@ export const PedigreeCarousel = () => {
         </div>
     );
 };
+const investorLogos = [
+  { name: "DeepMind", url: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Google_DeepMind_logo.svg" },
+  { name: "Stanford", url: "https://upload.wikimedia.org/wikipedia/en/b/b7/Stanford_University_seal_2003.svg" },
+  { name: "MIT", url: "https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" },
+  { name: "Oxford", url: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Oxford-University-Circlet.svg" },
+  { name: "Harvard", url: "https://upload.wikimedia.org/wikipedia/en/2/29/Harvard_shield.svg" },
+  { name: "NVIDIA", url: "https://upload.wikimedia.org/wikipedia/sco/2/21/Nvidia_logo.svg" }
+];
+
+export const PedigreeCarousel = () => {
+  return (
+    <div className="w-full overflow-hidden relative py-12 border-y border-white/5 bg-slate-950/20">
+      <div className="flex animate-marquee whitespace-nowrap items-center">
+        {[...investorLogos, ...investorLogos].map((logo, idx) => (
+          <div key={idx} className="flex flex-col items-center justify-center mx-12 md:mx-20 group grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+             <div className="h-10 md:h-12 w-24 md:w-32 relative">
+               <img 
+                 src={logo.url} 
+                 alt={logo.name} 
+                 className="h-full w-full object-contain" 
+               />
+             </div>
+             <span className="text-[9px] font-mono tracking-widest text-white/20 group-hover:text-cyan-400 mt-2 uppercase">{logo.name}</span>
+          </div>
+        ))}
+      </div>
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 30s linear infinite;
+        }
+      `}</style>
+    </div>
+  );
+};
+
 
 
 export const RoadmapTimeline = () => {
@@ -208,24 +247,31 @@ export const RoadmapTimeline = () => {
 
     return (
         <div ref={ref} className="relative w-full py-12 md:py-20 px-4">
-            <div className="absolute top-1/2 left-0 w-full h-1 bg-white/10 -translate-y-1/2 rounded-full" />
-
+            {/* Desktop Horizontal Line */}
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-white/10 -translate-y-1/2 rounded-full" />
             <div
-                className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 -translate-y-1/2 rounded-full transition-all duration-100 ease-out"
+                className="hidden md:block absolute top-1/2 left-0 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 -translate-y-1/2 rounded-full transition-all duration-100 ease-out"
                 style={{ width: `${progress * 100}%` }}
             />
 
-            <div className="relative flex justify-between w-full max-w-5xl mx-auto">
+            {/* Mobile Vertical Line */}
+            <div className="md:hidden absolute left-8 top-12 bottom-12 w-1 bg-white/10 rounded-full" />
+            <div
+                className="md:hidden absolute left-8 top-12 w-1 bg-gradient-to-b from-cyan-500 to-indigo-500 rounded-full transition-all duration-100 ease-out origin-top"
+                style={{ height: `calc(${progress * 100}% - 24px)` }}
+            />
+
+            <div className="relative flex flex-col md:flex-row justify-between w-full max-w-5xl mx-auto gap-12 md:gap-0">
                 {phases.map((phase, i) => {
                     const active = progress > (i / (phases.length - 1)) - 0.1;
                     return (
-                        <div key={i} className={`flex flex-col items-center gap-3 md:gap-4 transition-all duration-500 ${active ? 'opacity-100 translate-y-0' : 'opacity-30 translate-y-4'}`}>
-                            <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full border-2 flex items-center justify-center bg-slate-950 z-10 ${active ? 'border-cyan-400 text-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.5)]' : 'border-white/20 text-white/20'}`}>
+                        <div key={i} className={`flex flex-row md:flex-col items-center gap-6 md:gap-4 transition-all duration-500 ${active ? 'opacity-100 translate-y-0' : 'opacity-30 translate-y-4'}`}>
+                            <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full border-2 flex items-center justify-center bg-slate-950 z-10 shrink-0 ${active ? 'border-cyan-400 text-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.5)]' : 'border-white/20 text-white/20'}`}>
                                 <span className="font-bold text-xs md:text-sm">{phase.id}</span>
                             </div>
-                            <div className="text-center">
-                                <h4 className={`text-sm md:text-lg font-bold ${active ? 'text-white' : 'text-white/40'}`}>{phase.title}</h4>
-                                <p className="text-[10px] md:text-xs text-white/50 max-w-[100px] md:max-w-none">{phase.desc}</p>
+                            <div className="text-left md:text-center">
+                                <h4 className={`text-base md:text-lg font-bold ${active ? 'text-white' : 'text-white/40'}`}>{phase.title}</h4>
+                                <p className="text-xs text-white/50 max-w-[200px] md:max-w-none">{phase.desc}</p>
                             </div>
                         </div>
                     )

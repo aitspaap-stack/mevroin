@@ -5,7 +5,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 import BioCanvas from "../components/BioCanvas";
 import ScrollytellingHero from "../components/ScrollytellingHero";
-import { PedigreeCarousel, RoadmapTimeline } from '../components/UniqueSections';
+import { PedigreeCarousel, RoadmapTimeline, TeamSection } from '../components/UniqueSections';
 import ProjectPyramid from "../components/ProjectPyramid";
 
 const advisoryMembers = [
@@ -573,12 +573,14 @@ export default function Home() {
                     <div id="team" className="w-full text-center reveal hidden-initial scroll-section">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 md:mb-6" style={{ color: "#FFA500" }}>ENGINEERING THE IMPOSSIBLE</h2>
                         <p className="text-base md:text-lg lg:text-xl font-bold text-white leading-relaxed mb-8 md:mb-12 max-w-3xl mx-auto">
-                            50+ years combined across AI model R&D and deployment, clinical modeling and simulation, and datacenter-scale infrastructure—so we can deliver both the science and the platform.
+                            50+ years combined across AI model R&D and deployment, clinical modeling and simulation, and datacenter-scale infrastructure.
                         </p>
 
-                        <div className="w-full">
-                            <PedigreeCarousel />
+                        <div className="w-full my-12">
+                            <TeamSection />
                         </div>
+
+                        
 
                         <div className="mt-12 text-sm text-white/40 tracking-[0.2em] uppercase font-bold">
                             BACKED BY INDUSTRY VETERANS FROM MIT, STANFORD & DEEPMIND
@@ -604,23 +606,23 @@ export default function Home() {
                         </p>
 
                         {/* GRID */}
-                        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-6 lg:gap-8 text-left max-w-sm mx-auto md:max-w-none">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8 text-left max-w-5xl mx-auto md:max-w-none">
                             
                             {advisoryMembers.map((member) => (
 
                                 <div
                                     key={member.id}
-                                    className="min-w-0 p-2 md:p-6 aspect-square md:aspect-auto rounded-xl md:rounded-3xl bg-slate-900 border border-white/10 group hover:border-cyan-500/50 flex flex-col items-center h-full relative overflow-hidden"
+                                    className="min-w-0 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-slate-900 border border-white/10 group hover:border-cyan-500/50 flex flex-col items-center h-full relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]"
                                 >
 
                                     {/* Desktop glow */}
-                                    <div className="absolute top-0 right-0 w-16 h-16 md:w-32 md:h-32 bg-cyan-500/5 rounded-full blur-2xl md:blur-3xl group-hover:bg-cyan-500/10 transition-colors duration-500 hidden md:block" />
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-colors duration-500" />
 
                                     {/* Image */}
-                                    <div className="relative w-10 h-10 md:w-24 md:h-24 mx-auto mb-1 md:mb-6">
-                                        <div className="absolute inset-0 rounded-full border border-cyan-500/20 group-hover:border-cyan-400/50 transition-colors duration-500 z-10" />
+                                    <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 md:mb-6">
+                                        <div className="absolute inset-[-4px] rounded-full border border-cyan-500/20 group-hover:border-cyan-400/50 transition-colors duration-500 z-10" />
 
-                                        <div className="w-full h-full rounded-full overflow-hidden object-cover relative z-0">
+                                        <div className="w-full h-full rounded-full overflow-hidden object-cover relative z-0 ring-4 ring-slate-900">
                                             <img
                                                 src={member.image}
                                                 alt={member.name}
@@ -633,16 +635,16 @@ export default function Home() {
                                     {/* Content */}
                                     <div className="text-center flex-grow flex flex-col z-10 w-full overflow-hidden">
 
-                                        <h3 className="text-[9px] md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-cyan-300 transition-colors leading-tight truncate px-1">
+                                        <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-1 group-hover:text-cyan-300 transition-colors leading-tight">
                                             {member.name}
                                         </h3>
 
-                                        <p className="text-[7px] md:text-xs font-mono text-cyan-500/80 mb-1 md:mb-4 leading-tight truncate px-1">
+                                        <p className="text-xs md:text-sm font-mono text-cyan-500/80 mb-4 md:mb-4 leading-tight uppercase tracking-wider">
                                             {member.role}
                                         </p>
 
-                                        {/* Desktop description */}
-                                        <p className="text-sm text-white/60 leading-relaxed mb-6 flex-grow hidden md:block">
+                                        {/* Description */}
+                                        <p className="text-sm text-white/60 leading-relaxed mb-2 flex-grow">
                                             {member.details}
                                         </p>
 

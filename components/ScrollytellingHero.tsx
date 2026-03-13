@@ -1219,7 +1219,7 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                                     beat.align === 'right' ? 'text-right' : 'text-center'
                                     }`}>
                                     {beat.title && (
-                                        <h1 className={`text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight leading-[1.1] ${beat.align === 'center' || isMobile ? 'text-center mx-auto' :
+                                        <h1 className={`text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-2 md:mb-6 tracking-tight leading-[1.1] ${beat.align === 'center' || isMobile ? 'text-center mx-auto' :
                                             beat.align === 'right' ? 'text-right ml-auto' : 'text-left mr-auto'
                                             }`}>
                                             {beat.title.split(" ").map((word, w_i) => (

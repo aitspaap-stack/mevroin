@@ -29,26 +29,26 @@ const Navbar = () => {
         <>
             <nav className={`fixed top-2 md:top-4 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'translate-y-[-5px]' : ''}`}>
                 <div className="max-w-[98%] md:max-w-7xl mx-auto">
-                    <div className="relative bg-slate-900/60 backdrop-blur-3xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] rounded-full px-3 py-2 md:px-6 md:py-3 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
+                    <div className="relative bg-slate-900/60 backdrop-blur-3xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] rounded-full px-3 py-2 md:px-5 md:py-2.5 lg:px-6 lg:py-3 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] transition-all duration-300">
                         
                         {/* Left Side: Logo (Desktop) / Hamburger (Mobile) */}
                         <div className="flex justify-start items-center">
-                            {/* Hamburger: Mobile Only */}
+                            {/* Hamburger: Mobile/Tablet Only */}
                             <div className="lg:hidden">
                                 <button
                                     onClick={() => setIsOpen(true)}
-                                    className="p-2 md:p-3 hover:bg-white/10 rounded-full transition-colors group"
+                                    className="p-2 md:p-2.5 hover:bg-white/10 rounded-full transition-colors group"
                                 >
-                                    <div className="flex flex-col gap-1.5 w-6">
+                                    <div className="flex flex-col gap-1.5 w-5 md:w-6">
                                         <span className="w-full h-0.5 bg-white group-hover:bg-cyan-200 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                                         <span className="w-2/3 h-0.5 bg-white group-hover:w-full transition-all duration-300 shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                                     </div>
                                 </button>
                             </div>
 
-                            {/* Logo: Desktop Only */}
+                            {/* Logo: Desktop (Laptops and above) */}
                             <div 
-                                className="hidden lg:flex items-center cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
+                                className="hidden lg:flex items-center cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-[1.02]"
                                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             >
                                 <NextImage
@@ -56,15 +56,15 @@ const Navbar = () => {
                                     alt="Mevreon"
                                     width={160}
                                     height={60}
-                                    className="h-9 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+                                    className="h-7 xl:h-9 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all"
                                 />
                             </div>
                         </div>
 
-                        {/* Center Side: Logo (Mobile Only) */}
+                        {/* Center Side: Logo (Mobile/Tablet Only) */}
                         <div className="flex justify-center items-center">
                             <div 
-                                className="lg:hidden flex items-center cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
+                                className="md:hidden flex items-center cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-[1.02]"
                                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             >
                                 <NextImage
@@ -72,20 +72,20 @@ const Navbar = () => {
                                     alt="Mevreon"
                                     width={140}
                                     height={50}
-                                    className="h-5 md:h-7 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+                                    className="h-5 sm:h-6 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                                 />
                             </div>
                         </div>
 
                         {/* Right Side: Links (Desktop) / Spacer (Mobile) */}
                         <div className="flex justify-end items-center">
-                            <div className="hidden lg:flex items-center gap-2 xl:gap-4 ml-4">
-                                <div className="flex items-center gap-1 xl:gap-3 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 shadow-inner">
+                            <div className="hidden md:flex items-center gap-1.5 lg:gap-4 ml-2">
+                                <div className="flex items-center gap-1 lg:gap-2 bg-white/5 border border-white/10 rounded-full px-2 py-1 lg:px-4 lg:py-2 shadow-inner">
                                     {['About', 'Platform', 'Why Mevreon', 'Team', 'Advisory', 'Book Demo'].map((item) => (
                                         <button
                                             key={item}
                                             onClick={() => scrollTo(item.toLowerCase().replace(' ', '-'))}
-                                            className="px-2 py-1 text-[9px] xl:text-[11px] font-bold text-white/80 hover:text-cyan-300 uppercase tracking-widest transition-colors whitespace-nowrap"
+                                            className="px-1.5 lg:px-2 py-0.5 text-[9px] lg:text-[11px] font-bold text-white/70 hover:text-cyan-300 uppercase tracking-tighter lg:tracking-widest transition-colors whitespace-nowrap"
                                         >
                                             {item}
                                         </button>
@@ -93,8 +93,8 @@ const Navbar = () => {
                                 </div>
                             </div>
                             
-                            {/* Mobile Spacer to keep logo centered */}
-                            <div className="lg:hidden w-10 md:w-12" />
+                            {/* Mobile Spacer to keep logo centered exactly */}
+                            <div className="md:hidden w-10 sm:w-12" />
                         </div>
                     </div>
                 </div>
