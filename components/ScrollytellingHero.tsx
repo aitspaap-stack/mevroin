@@ -25,56 +25,56 @@ type StoryBeat = {
 const STORY_BEATS: StoryBeat[] = [
     {
         range: [0, 0.15],
-        title: "Mevreon AI Factory for Precision Medicine & Clinical Trials.",
-        subtitle: "Turn fragmented EHR, imaging, and omics into simulation-backed, audit-ready decision packs.\nSupport screening, cohort design, and early risk detection—with clinician oversight.",
-        footer: "Decision-support platform; validation programs in progress with clinical partners.",
+        title: "The Mevreon Intelligence Factory",
+        subtitle: "Transforming heterogeneous EHR, imaging, and omics data into validated, audit-ready Digital Twin decision packs.\nEngineered for systematic trial optimization, cohort stratification, and evidence-based risk mitigation.",
+        footer: "Standardized decision-support platform; currently undergoing validation with major clinical partners.",
         align: "left",
         position: "center",
         frameIndex: 0,
     },
     {
         range: [0.2, 0.35],
-        title: "Mechanistic + AI Simulation Models",
-        subtitle: "Combine mechanistic disease models with data-driven learning to simulate progression/response and quantify risk—beyond black-box predictions.",
+        title: "Physics-Informed Simulation Models",
+        subtitle: "Integrating mechanistic physiological architectures with deep-learning heuristics to simulate longitudinal disease progression and therapy response cycles with high-fidelity accuracy.",
         align: "left",
         position: "center",
         frameIndex: 1,
     },
     {
         range: [0.4, 0.55],
-        title: "Patient to ecosystem digital twins",
-        subtitle: "Build longitudinal patient state with provenance, then simulate cohorts to test ‘what-if’ decisions across protocols and endpoints.",
+        title: "Enterprise Digital Twin Ecosystems",
+        subtitle: "Synthesizing longitudinal patient states with blockchain-grade provenance to execute high-dimensional 'What-If' simulations across diverse clinical protocols and endpoints.",
         align: "left",
         position: "center",
         frameIndex: 2,
     },
     {
         range: [0.6, 0.75],
-        title: "Privacy-First Data Fabric (De-ID + Synthetic)",
-        subtitle: "Enable collaboration, validation, and model development using de-identified data and privacy-safe synthetic datasets—without exposing patient identities.",
+        title: "Privacy-Preserving Data Fabric",
+        subtitle: "Facilitating multi-institutional collaboration via advanced de-identification protocols and high-fidelity synthetic data generation—ensuring absolute anonymity without data loss.",
         align: "left",
         position: "center",
         frameIndex: 3,
     },
     {
         range: [0.8, 0.9],
-        title: "Cutting-Edge Acceleration",
-        subtitle: "Bridging the gap between biological data and human outcomes.",
+        title: "Strategic Therapeutic Acceleration",
+        subtitle: "",
         bullets: [
-            "Faster screening & eligibility prioritization (reduce screen-fail and manual review).",
-            "More consistent cohorts across sites (reduce protocol drift and amendments).",
-            "Earlier risk signals for non-response and safety (support proactive decisions)."
+            "Optimized Screening & Eligibility: Drastically reduce screen-failure rates through precision prioritization.",
+            "Standardized Cohort Stratification: Eliminate protocol drift and mitigate the risk of clinical amendments.",
+            "Predictive Safety Surveillance: Identify early risk signals for non-response and adverse events proactively."
         ],
         align: "left",
         position: "center",
         frameIndex: 4,
-        primaryCTA: { label: "Request a Demo", href: "#" },
-        secondaryCTA: { label: "Explore the Platform", href: "#" }
+        primaryCTA: { label: "Request Access", href: "#" },
+        secondaryCTA: { label: "Review Documentation", href: "#" }
     },
     {
         range: [0.93, 1.0],
-        title: "The Execution Gap",
-        subtitle: "Trial evidence is fragmented across clinical notes, scans, labs, and molecular tests—so teams make high-stakes decisions with partial context. Mevreon turns this fragmented evidence into simulation-backed decision packs to act earlier.",
+        title: "Closing the Evidence Gap",
+        subtitle: "Clinical evidence is often siloed and fragmented. Mevreon synthesizes disparate data streams into rigorous, simulation-backed decision packs—enabling sponsors to act with absolute certainty.",
         align: "left",
         position: "center",
         frameIndex: 5,
@@ -931,92 +931,6 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
 
     const controlsContent = (
         <>
-            <nav
-                className="fixed top-0 left-0 right-0 z-[100]"
-            >
-                <div className="mx-auto max-w-7xl px-4 py-2 md:px-6 md:py-4">
-                    <div className="flex items-center justify-between 
-  bg-white/10 
-  backdrop-blur-md 
-  border border-white/20 
-  shadow-lg 
-  px-4 py-2 md:px-6 md:py-3 
-  rounded-xl ring-1 ring-white/20 " style={{ borderRadius: '25px' }}>
-                        <div
-                            className={`
-                                text-white/90 font-semibold tracking-tight text-lg cursor-pointer
-                                transition-all duration-700 ease-out
-                                ${isNavVisible || forceShowUI ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}
-                            `}
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        >
-                            Mevreon<span className="text-cyan-400">.ai</span>
-                        </div>
-
-                        <div
-                            className={`
-                                hidden md:flex items-center gap-10 text-base font-medium text-white/90
-                                transition-all duration-700 delay-100 ease-out
-                                ${isNavVisible || forceShowUI ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}
-                            `}
-                        >
-                            <button
-                                onClick={() => {
-                                    const el = document.getElementById('about');
-                                    if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY);
-                                }}
-                                className="hover:text-cyan-400 transition-colors"
-                            >
-                                About
-                            </button>
-                            <button
-                                onClick={() => {
-                                    const el = document.getElementById('platform');
-                                    if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY + window.innerHeight * 0.1);
-                                }}
-                                className="hover:text-cyan-400 transition-colors"
-                            >
-                                Platform
-                            </button>
-                            <button
-                                onClick={() => {
-                                    const el = document.getElementById('why-mevreon');
-                                    if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY);
-                                }}
-                                className="hover:text-cyan-400 transition-colors"
-                            >
-                                Why Mevreon
-                            </button>
-                            <button
-                                onClick={() => {
-                                    const el = document.getElementById('team');
-                                    if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY);
-                                }}
-                                className="hover:text-cyan-400 transition-colors"
-                            >
-                                Team
-                            </button>
-                        </div>
-
-                        <button
-                            onClick={() => {
-                                const el = document.getElementById('book-demo');
-                                if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY);
-                            }}
-                            className={`
-                                px-3 py-1.5 md:px-4 md:py-2 bg-white/10 hover:bg-white/15 rounded-full text-sm text-white/90 font-medium border border-white/10
-                                transition-all duration-700 delay-200 ease-out hover:scale-105
-                                ${isNavVisible || forceShowUI ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}
-                            `}
-                        >
-                            Request Access
-                        </button>
-                    </div>
-                </div>
-            </nav>
-
-
-
             <div className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[100] flex flex-col gap-1.5 md:gap-2 transition-all duration-1000 ${isNavVisible || forceShowUI ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
 
                 {showScrollHint && (isNavVisible || forceShowUI) && (
@@ -1301,11 +1215,11 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                                     transform: `translateX(${xOffset}px)`
                                 }}
                             >
-                                <div className={`px-8 md:px-16 pt-[110px] max-w-xl ${beat.align === 'left' ? 'text-left' :
+                                <div className={`px-6 md:px-10 lg:px-16 pt-[80px] md:pt-[90px] lg:pt-[110px] max-w-lg lg:max-w-xl ${beat.align === 'left' ? 'text-left' :
                                     beat.align === 'right' ? 'text-right' : 'text-center'
                                     }`}>
                                     {beat.title && (
-                                        <h1 className={`text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-[1.1] ${beat.align === 'center' || isMobile ? 'text-center mx-auto' :
+                                        <h1 className={`text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight leading-[1.1] ${beat.align === 'center' || isMobile ? 'text-center mx-auto' :
                                             beat.align === 'right' ? 'text-right ml-auto' : 'text-left mr-auto'
                                             }`}>
                                             {beat.title.split(" ").map((word, w_i) => (
@@ -1323,7 +1237,7 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                                         <div className={`relative mb-8 max-w-xl ${beat.align === 'center' || isMobile ? 'mx-auto' : beat.align === 'right' ? 'ml-auto' : 'mr-auto'}`}>
                                             <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_rgba(6,182,212,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] rounded-xl pointer-events-none md:hidden" />
 
-                                            <p className={`relative text-xl md:text-2xl text-white/90 leading-relaxed font-light px-6 py-4 md:py-0 
+                                            <p className={`relative text-base md:text-lg lg:text-2xl text-white/90 leading-relaxed font-light px-6 py-4 md:py-0 
                                                 ${beat.align === 'center' ? 'text-center md:px-0' :
                                                     beat.align === 'right' ? 'text-right md:border-r-[3px] md:border-cyan-500/50 md:pr-6 md:pl-0' :
                                                         'text-left md:border-l-[3px] md:border-cyan-500/50 md:pl-6 md:pr-0'

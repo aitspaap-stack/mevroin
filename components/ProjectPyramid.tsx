@@ -4,8 +4,8 @@ import React from 'react';
 
 export default function ProjectPyramid() {
     const project = {
-        title: "From multimodal data to repeatable decision packs.",
-        subtitle: "Built for scale across programs: multiple twins per disease, protocol, and endpoint.",
+        title: "From Multimodal Ingestion to Standardized Decision Packs",
+        subtitle: "Enterprise-grade scaling for clinical programs: multiple Digital Twins per disease state, protocol, and endpoint.",
         description: "",
         steps: [
             {
@@ -13,7 +13,7 @@ export default function ProjectPyramid() {
                 title: "OmniTwin",
                 subtitle: "AI Platform",
                 description: "A scalable discovery and simulation platform to accelerate therapeutic design and decision-making.",
-                detail: "Turns multimodal evidence into repeatable, deployable “decision packs” across programs.",
+                detail: "Converts multimodal evidence into standardized, deployable decision packs for enterprise clinical programs.",
                 icon: "1",
                 color: "#06b6d4",
                 images: ["/Photos/step1.1.png", "/Photos/step1.2.png"],
@@ -29,7 +29,7 @@ export default function ProjectPyramid() {
                 title: "Digital Twin",
                 subtitle: "Disease progression + therapy simulation",
                 description: "Patient- and cohort-level twins that model disease progression over time.",
-                detail: "Run therapy “what-if” simulations to estimate response, risk, and strategy tradeoffs—packaged as decision-ready evidence.",
+                detail: "Execute complex therapy simulations to quantify response probability, risk profiles, and strategic trade-offs.",
                 icon: "2",
                 color: "#8b5cf6",
                 images: ["/Photos/step2.1.png", "/Photos/step2.2.png", "/Photos/step2.3.png", "/Photos/step2.4.png"],
@@ -45,7 +45,7 @@ export default function ProjectPyramid() {
                 title: "Synthetic Data",
                 subtitle: "with Privacy Preserving",
                 description: "Generates privacy-safe synthetic datasets to unlock scarce, sensitive clinical data.",
-                detail: "Generate privacy-safe synthetic datasets to accelerate development and validation without exposing patient identities.",
+                detail: "Synthesize high-fidelity datasets to accelerate development cycles and validation protocols while ensuring absolute patient anonymity.",
                 icon: "3",
                 color: "#ec4899",
                 images: ["/Photos/step3.1.png", "/Photos/step3.2.png"],
@@ -61,7 +61,7 @@ export default function ProjectPyramid() {
                 title: "Multimodal AI",
                 subtitle: "Harness Imaging, Omics, EHR",
                 description: "Fuses imaging, omics, and EHR/clinical records into a single intelligence layer.",
-                detail: "Extract structured signal from complex clinical data to power stratification, endpoints, and simulation inputs.",
+                detail: "Leverage advanced heuristics to extract structured signal from heterogeneous clinical datasets to optimize trial stratification.",
                 icon: "4",
                 color: "#f59e0b",
                 images: ["/Photos/step4.1.png", "/Photos/step4.2.png", "/Photos/step4.3.png"],
@@ -95,7 +95,7 @@ export default function ProjectPyramid() {
                             {project.title}
                         </span>
                     </h2>
-                    <p className="text-sm md:text-base text-white/50 max-w-2xl mx-auto font-light mb-2">
+                    <p className="text-sm md:text-base text-white/90 max-w-2xl mx-auto font-bold mb-2">
                         {project.subtitle}
                     </p>
                     <p className="text-xs md:text-sm text-white/30 max-w-3xl mx-auto">
@@ -277,11 +277,11 @@ export default function ProjectPyramid() {
                 </div>
                 <div className="mt-12 md:mt-16 text-center">
                     <div className="inline-flex flex-col items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                        <span className="text-lg font-mono text-white/90 uppercase tracking-widest">
-                            Harnessing physics-driven AI + synthetic data to speed cures – breaking data silos without compromising privacy
+                        <span className="text-lg font-mono text-white/90 uppercase tracking-widest leading-relaxed">
+                            Harnessing physics-informed AI and high-fidelity synthetic data to accelerate therapeutic cycles — bridging data silos via privacy-preserving architectures.
                         </span>
-                        <span className="text-md font-mono text-white/90 uppercase tracking-widest text-yellow-500">
-                            Building a global digital twin factory for trial operations and precision medicine—privacy-first, validation-driven, deployment-ready.
+                        <span className="text-md font-mono text-white/90 uppercase tracking-widest text-yellow-500 mt-2">
+                            Deploying global Digital Twin frameworks for advanced trial operations and precision clinical medicine.
                         </span>
                     </div>
                 </div>

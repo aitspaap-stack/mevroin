@@ -12,7 +12,6 @@ export default function BioCanvas() {
         if (!ctx) return;
 
         const img = new Image();
-        img.src = "/sequence/frame_0ss45.png";
 
         const drawInfo = {
             width: window.innerWidth,

@@ -2,89 +2,79 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import NextImage from "next/image";
+import Link from "next/link";
 import BioCanvas from "../components/BioCanvas";
 import ScrollytellingHero from "../components/ScrollytellingHero";
 import { PedigreeCarousel, RoadmapTimeline } from '../components/UniqueSections';
 import ProjectPyramid from "../components/ProjectPyramid";
 
+const advisoryMembers = [
+  {
+    id: 1,
+    name: "Dr. Jane Doe",
+    role: "Chief Medical Advisor",
+    details: "Expert in longitudinal state simulation and clinical trial operations with 20+ years of experience in biotech.",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  },
+  {
+    id: 2,
+    name: "John Smith, PhD",
+    role: "AI Ethics & Data Privacy",
+    details: "Former VP of Data Privacy at a leading pharma company. Architect of privacy-first sharing models and compliance systems.",
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  },
+  {
+    id: 3,
+    name: "Sarah Jenkins, MD",
+    role: "Head of Clinical Operations",
+    details: "Pioneer in operationalizing multimodal clinical data into repeatable, auditable decision outputs for modern trial design.",
+    image: "https://images.unsplash.com/photo-1594824436998-05f226041f83?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  },
+  {
+    id: 4,
+    name: "Dr. Michael Chen",
+    role: "Lead Biostatistician",
+    details: "Specializes in mechanistic priors and data-driven learning to build highly interpretable and robust simulation models.",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  },
+  {
+    id: 5,
+    name: "Emily Nakamura",
+    role: "Digital Twin Strategist",
+    details: "Led the development of scalable Executable Patient Twins across multiple leading global biotech and pharma startups.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  },
+  {
+    id: 6,
+    name: "Dr. Robert Foster",
+    role: "Clinical Trial Strategist",
+    details: "Advises on deploying simulation-backed decisions as a standard layer in clinical operations and early risk detection.",
+    image: "https://images.unsplash.com/photo-1537368910025-702800faa86b?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  },
+  {
+    id: 7,
+    name: "Laura Thompson",
+    role: "Regulatory Affairs",
+    details: "Over a decade of experience ensuring audit-ready evidence packs for trial teams, CROs, and global regulatory bodies.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  },
+  {
+    id: 8,
+    name: "David Park, MSc",
+    role: "Product Innovation Lead",
+    details: "Focuses on unifying physics and AI to move beyond black-box predictions and deliver actionable operational impacts.",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&h=300&auto=format&fit=crop",
+    linkedin: "https://linkedin.com/in/#"
+  }
+];
 
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const scrollTo = (id: string) => {
-        const el = document.getElementById(id);
-        if (el) {
-            const absoluteTop = el.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({ top: absoluteTop, behavior: 'smooth' });
-        }
-        setIsOpen(false);
-    };
-
-    return (
-        <>
-            <nav className="fixed top-2 md:top-6 left-0 right-0 z-50 flex justify-center px-4 md:px-0">
-                <div className="w-full max-w-[95%] md:max-w-7xl bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_rgba(6,182,212,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] rounded-full px-4 py-3 md:px-6 md:py-4 flex justify-between items-center relative">
-
-                    <button
-                        onClick={() => setIsOpen(true)}
-                        className="p-2 hover:bg-white/10 rounded-full transition-colors group"
-                    >
-                        <div className="flex flex-col gap-1.5 w-6">
-                            <span className="w-full h-0.5 bg-white group-hover:bg-cyan-200 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
-                            <span className="w-2/3 h-0.5 bg-white group-hover:w-full transition-all duration-300 shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
-                        </div>
-                    </button>
-
-                    <div
-                        className="absolute left-1/2 -translate-x-1/2 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    >
-                        <NextImage
-                            src="/Mevreon Logo.png"
-                            alt="Mevreon"
-                            width={140}
-                            height={50}
-                            className="h-5 md:h-8 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                        />
-                    </div>
-
-                    <div className="hidden md:flex items-center gap-6 mr-1 bg-white/5 border border-white/20 rounded-full px-6 py-2 shadow-inner">
-                        {['About', 'Platform', 'Why Mevreon', 'Team', 'Book Demo'].map((item) => (
-                            <button
-                                key={item}
-                                onClick={() => scrollTo(item.toLowerCase().replace(' ', '-'))}
-                                className="text-xs font-bold text-white/90 hover:text-cyan-300 uppercase tracking-widest transition-colors"
-                            >
-                                {item}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </nav>
-
-            <div className={`menu-overlay fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-2xl duration-500 transition-all ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-                <button
-                    onClick={() => setIsOpen(false)}
-                    className="menu-close absolute top-4 right-4 md:top-8 md:right-8 text-white p-3 md:p-4 hover:rotate-90 transition-transform duration-300"
-                >
-                    <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
-
-                <div className="flex flex-col items-center justify-center h-full gap-6 md:gap-8 px-4">
-                    {['About', 'Platform', 'Why Mevreon', 'Team', 'Book Demo'].map((item) => (
-                        <button
-                            key={item}
-                            onClick={() => scrollTo(item.toLowerCase().replace(' ', '-'))}
-                            className="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all tracking-tighter w-full text-center py-2 md:py-0"
-                        >
-                            {item}
-                        </button>
-                    ))}
-                </div>
-            </div>
-        </>
-    );
-};
 
 const Stat = ({ number, label }: { number: string, label: string }) => (
     <div className="flex flex-col items-center justify-center p-3 md:p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors group">
@@ -214,15 +204,15 @@ export default function Home() {
                 <ScrollytellingHero />
             </div>
 
-            <section id="about" className="relative z-10 py-16 md:py-32 overflow-hidden w-full h-auto">
+            <section id="about" className="relative z-10 py-12 md:py-20 lg:py-32 overflow-hidden w-full h-auto">
                 <div className="max-w-6xl mx-auto px-4 md:px-6">
-                    <div className="text-center mb-12 md:mb-16 reveal hidden-initial">
-                        <div className="inline-flex items-center gap-3 mb-6">
+                    <div className="text-center mb-10 md:mb-14 lg:mb-16 reveal hidden-initial">
+                        <div className="inline-flex items-center gap-3 mb-5 md:mb-6">
                             <div className="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500/50" />
                             <span className="text-xs font-mono text-cyan-400/80 tracking-[0.3em] uppercase">Who We Are</span>
                             <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500/50" />
                         </div>
-                        <h2 className="text-3xl md:text-6xl font-black tracking-tight mb-4 md:mb-6">
+                        <h2 className="text-3xl md:text-4xl lg:text-6xl font-black tracking-tight mb-4 md:mb-6">
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60">
                                 About Mevreon:
                             </span>
@@ -231,7 +221,7 @@ export default function Home() {
                                 Clinical development has reached an inflection point.
                             </span>
                         </h2>
-                        <p className="text-sm md:text-xl text-white max-w-3xl mx-auto leading-relaxed text-justify md:text-center px-2 md:px-0">
+                        <p className="text-sm md:text-base lg:text-xl text-white max-w-3xl mx-auto leading-relaxed text-justify md:text-center px-2 md:px-0">
                             Science is advancing fast, but trial execution remains slow because evidence is siloed and decisions are reactive. Mevreon is building a digital twin factory that operationalizes multimodal clinical data into repeatable, auditable decision outputs.
                         </p>
                     </div>
@@ -264,244 +254,164 @@ export default function Home() {
 
                 <div className="relative max-w-6xl mx-auto px-4 md:px-6 mb-12 md:mb-16">
                     <div className="text-center reveal hidden-initial">
-                        <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 relative inline-block">
+                            <span className="relative inline-block text-transparent bg-clip-text"
+                                style={{
+                                    backgroundImage: 'linear-gradient(90deg, #22d3ee, #a78bfa, #22d3ee, #34d399, #22d3ee)',
+                                    backgroundSize: '300% 100%',
+                                    animation: 'shimmerText 4s linear infinite'
+                                }}
+                            >
                                 THE MEVREON ADVANTAGE
                             </span>
+                            <style>{`
+                                @keyframes shimmerText {
+                                    0% { background-position: 0% 50%; }
+                                    100% { background-position: 300% 50%; }
+                                }
+                            `}</style>
                         </h2>
-                        <p className="text-white/40 text-base md:text-lg max-w-2xl mx-auto">
+                        <p className="text-base md:text-lg max-w-2xl mx-auto font-semibold"
+                            style={{
+                                background: 'linear-gradient(90deg, #22d3ee, #a78bfa)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text'
+                            }}
+                        >
                             Three things differentiate us:
                         </p>
                     </div>
                 </div>
 
-                <div className="relative w-full overflow-hidden py-10">
-                    <style>{`
-                        @keyframes marquee {
-                            0% { transform: translateX(0); }
-                            100% { transform: translateX(-50%); }
-                        }
-                        .animate-marquee {
-                            animation: marquee 30s linear infinite;
-                            width: fit-content;
-                        }
-                        .animate-marquee:hover {
-                            animation-play-state: paused;
-                        }
-                    `}</style>
+                <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 
-                    <div className="flex animate-marquee">
-                        <div className="flex gap-4 md:gap-8 px-2 md:px-4 shrink-0">
-                            <div className="group w-[85vw] md:w-[30vw] min-w-[300px] md:min-w-[400px]">
-                                <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden group-hover:-translate-y-2">
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 opacity-80" />
-                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
-                                    <div className="relative z-10">
-                                        <div className="flex justify-between items-start mb-4 md:mb-6">
-                                            <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-105 transition-transform duration-500">
-                                                <span className="text-xl md:text-3xl">🧪</span>
-                                            </div>
-                                            <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-cyan-500/20 transition-colors">01</span>
+                        {/* Card 01 */}
+                        <div className="group">
+                            <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 opacity-80" />
+                                <div className="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
+                                <div className="relative z-10">
+                                    <div className="flex justify-between items-start mb-4 md:mb-6">
+                                        <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-105 transition-transform duration-500">
+                                            <span className="text-xl md:text-3xl">🧪</span>
                                         </div>
-                                        <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">The OmniTwin Engine</h3>
-                                        <p className="text-[10px] md:text-xs font-mono text-cyan-400/80 tracking-widest uppercase mb-4 md:mb-6">Biological Intelligence</p>
-                                        <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-cyan-500/30 pl-4">INDUSTRIAL-GRADE SIMULATION</p>
-                                        <ul className="space-y-3 md:space-y-4">
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(96,165,250,0.6)]" />
-                                                <span>Creates Executable Patient Twins (longitudinal state + provenance).</span>
-                                            </li>
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
-                                                <span>Uses mechanistic priors + data-driven learning for interpretable models.</span>
-                                            </li>
-                                        </ul>
+                                        <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-cyan-500/20 transition-colors">01</span>
                                     </div>
-                                </div>
-                            </div>
-
-
-                            <div className="group w-[85vw] md:w-[30vw] min-w-[300px] md:min-w-[400px]">
-                                <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 hover:border-emerald-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(16,185,129,0.15)] overflow-hidden group-hover:-translate-y-2">
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500 opacity-80" />
-                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
-                                    <div className="relative z-10">
-                                        <div className="flex justify-between items-start mb-4 md:mb-6">
-                                            <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:scale-105 transition-transform duration-500">
-                                                <span className="text-xl md:text-3xl">📊</span>
-                                            </div>
-                                            <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-emerald-500/20 transition-colors">02</span>
-                                        </div>
-                                        <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Decision Packs for Operations</h3>
-                                        <p className="text-[10px] md:text-xs font-mono text-emerald-400/80 tracking-widest uppercase mb-4 md:mb-6">Operational Impact</p>
-                                        <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-emerald-500/30 pl-4">AUDIT-READY DECISION FACTORY</p>
-                                        <ul className="space-y-3 md:space-y-4">
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                                                <span>Delivers audit-ready evidence packs for trial teams, CROs, and clinicians.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(45,212,191,0.6)]" />
-                                                <span>Supports screening, cohorting, and early risk detection.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className="group w-[85vw] md:w-[30vw] min-w-[300px] md:min-w-[400px]">
-                                <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-red-500/30 hover:border-red-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(239,68,68,0.15)] overflow-hidden group-hover:-translate-y-2">
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-80" />
-                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-red-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
-                                    <div className="relative z-10">
-                                        <div className="flex justify-between items-start mb-4 md:mb-6">
-                                            <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-red-500/10 to-orange-500/10 flex items-center justify-center border border-red-500/20 group-hover:scale-105 transition-transform duration-500">
-                                                <span className="text-xl md:text-3xl">⚠️</span>
-                                            </div>
-                                            <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-red-500/20 transition-colors">03</span>
-                                        </div>
-                                        <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Why It Works</h3>
-                                        <p className="text-[10px] md:text-xs font-mono text-red-400/80 tracking-widest uppercase mb-4 md:mb-6">The Platform</p>
-                                        <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-red-500/30 pl-4">UNIFYING PHYISCS + AI</p>
-                                        <ul className="space-y-3 md:space-y-4">
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(251,146,60,0.6)]" />
-                                                <span>Moves beyond black-box predictions with simulation-grounded evidence.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(248,113,113,0.6)]" />
-                                                <span>Breaks silos via privacy-first sharing and adoptable outputs.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">The OmniTwin Engine</h3>
+                                    <p className="text-[10px] md:text-xs font-mono text-cyan-400/80 tracking-widest uppercase mb-4 md:mb-6">Biological Intelligence</p>
+                                    <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-cyan-500/30 pl-4">INDUSTRIAL-GRADE SIMULATION</p>
+                                    <ul className="space-y-3 md:space-y-4">
+                                        <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(96,165,250,0.6)]" />
+                                            <span>Creates Executable Patient Twins (longitudinal state + provenance).</span>
+                                        </li>
+                                        <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
+                                            <span>Uses mechanistic priors + data-driven learning for interpretable models.</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex gap-4 md:gap-8 px-2 md:px-4 shrink-0">
-                            <div className="group w-[85vw] md:w-[30vw] min-w-[300px] md:min-w-[400px]">
-                                <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden group-hover:-translate-y-2">
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 opacity-80" />
-                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
-                                    <div className="relative z-10">
-                                        <div className="flex justify-between items-start mb-4 md:mb-6">
-                                            <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-105 transition-transform duration-500">
-                                                <span className="text-xl md:text-3xl">🧪</span>
-                                            </div>
-                                            <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-cyan-500/20 transition-colors">01</span>
+                        {/* Card 02 */}
+                        <div className="group">
+                            <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 hover:border-emerald-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(16,185,129,0.15)] overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500 opacity-80" />
+                                <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
+                                <div className="relative z-10">
+                                    <div className="flex justify-between items-start mb-4 md:mb-6">
+                                        <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:scale-105 transition-transform duration-500">
+                                            <span className="text-xl md:text-3xl">📊</span>
                                         </div>
-                                        <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">The OmniTwin Engine</h3>
-                                        <p className="text-[10px] md:text-xs font-mono text-cyan-400/80 tracking-widest uppercase mb-4 md:mb-6">Biological Intelligence</p>
-                                        <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-cyan-500/30 pl-4">INDUSTRIAL-GRADE SIMULATION</p>
-                                        <ul className="space-y-3 md:space-y-4">
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(96,165,250,0.6)]" />
-                                                <span>Creates Executable Patient Twins (longitudinal state + provenance).</span>
-                                            </li>
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
-                                                <span>Uses mechanistic priors + data-driven learning for interpretable models.</span>
-                                            </li>
-                                        </ul>
+                                        <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-emerald-500/20 transition-colors">02</span>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div className="group w-[85vw] md:w-[30vw] min-w-[300px] md:min-w-[400px]">
-                                <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 hover:border-emerald-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(16,185,129,0.15)] overflow-hidden group-hover:-translate-y-2">
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500 opacity-80" />
-                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
-                                    <div className="relative z-10">
-                                        <div className="flex justify-between items-start mb-4 md:mb-6">
-                                            <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:scale-105 transition-transform duration-500">
-                                                <span className="text-xl md:text-3xl">📊</span>
-                                            </div>
-                                            <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-emerald-500/20 transition-colors">02</span>
-                                        </div>
-                                        <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Decision Packs for Operations</h3>
-                                        <p className="text-[10px] md:text-xs font-mono text-emerald-400/80 tracking-widest uppercase mb-4 md:mb-6">Operational Impact</p>
-                                        <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-emerald-500/30 pl-4">AUDIT-READY DECISION FACTORY</p>
-                                        <ul className="space-y-3 md:space-y-4">
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                                                <span>Delivers audit-ready evidence packs for trial teams, CROs, and clinicians.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(45,212,191,0.6)]" />
-                                                <span>Supports screening, cohorting, and early risk detection.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="group w-[85vw] md:w-[30vw] min-w-[300px] md:min-w-[400px]">
-                                <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-red-500/30 hover:border-red-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(239,68,68,0.15)] overflow-hidden group-hover:-translate-y-2">
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-80" />
-                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-red-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
-                                    <div className="relative z-10">
-                                        <div className="flex justify-between items-start mb-4 md:mb-6">
-                                            <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-red-500/10 to-orange-500/10 flex items-center justify-center border border-red-500/20 group-hover:scale-105 transition-transform duration-500">
-                                                <span className="text-xl md:text-3xl">⚠️</span>
-                                            </div>
-                                            <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-red-500/20 transition-colors">03</span>
-                                        </div>
-                                        <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Why It Works</h3>
-                                        <p className="text-[10px] md:text-xs font-mono text-red-400/80 tracking-widest uppercase mb-4 md:mb-6">The Platform</p>
-                                        <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-red-500/30 pl-4">UNIFYING PHYISCS + AI</p>
-                                        <ul className="space-y-3 md:space-y-4">
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(251,146,60,0.6)]" />
-                                                <span>Moves beyond black-box predictions with simulation-grounded evidence.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(248,113,113,0.6)]" />
-                                                <span>Breaks silos via privacy-first sharing and adoptable outputs.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Decision Packs for Operations</h3>
+                                    <p className="text-[10px] md:text-xs font-mono text-emerald-400/80 tracking-widest uppercase mb-4 md:mb-6">Operational Impact</p>
+                                    <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-emerald-500/30 pl-4">AUDIT-READY DECISION FACTORY</p>
+                                    <ul className="space-y-3 md:space-y-4">
+                                        <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                                            <span>Delivers audit-ready evidence packs for trial teams, CROs, and clinicians.</span>
+                                        </li>
+                                        <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(45,212,191,0.6)]" />
+                                            <span>Supports screening, cohorting, and early risk detection.</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Card 03 */}
+                        <div className="group">
+                            <div className="relative h-full p-5 md:p-8 rounded-3xl bg-slate-900/90 backdrop-blur-xl border border-red-500/30 hover:border-red-500/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(239,68,68,0.15)] overflow-hidden">
+                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-80" />
+                                <div className="absolute -top-24 -right-24 w-48 h-48 bg-red-500/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700" />
+                                <div className="relative z-10">
+                                    <div className="flex justify-between items-start mb-4 md:mb-6">
+                                        <div className="w-10 h-10 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-red-500/10 to-orange-500/10 flex items-center justify-center border border-red-500/20 group-hover:scale-105 transition-transform duration-500">
+                                            <span className="text-xl md:text-3xl">⚠️</span>
+                                        </div>
+                                        <span className="text-2xl md:text-4xl font-black text-white/5 font-mono group-hover:text-red-500/20 transition-colors">03</span>
+                                    </div>
+                                    <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Why It Works</h3>
+                                    <p className="text-[10px] md:text-xs font-mono text-red-400/80 tracking-widest uppercase mb-4 md:mb-6">The Platform</p>
+                                    <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-red-500/30 pl-4">UNIFYING PHYSICS + AI</p>
+                                    <ul className="space-y-3 md:space-y-4">
+                                        <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(251,146,60,0.6)]" />
+                                            <span>Moves beyond black-box predictions with simulation-grounded evidence.</span>
+                                        </li>
+                                        <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(248,113,113,0.6)]" />
+                                            <span>Breaks silos via privacy-first sharing and adoptable outputs.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
 
-            <section className="relative z-10 py-12 md:py-20 w-full h-auto">
+            <section className="relative z-10 py-12 md:py-16 lg:py-20 w-full h-auto">
                 <div className="max-w-5xl mx-auto px-4 md:px-6">
-                    <div className="text-center mb-10 reveal hidden-initial">
+                    <div className="text-center mb-8 md:mb-10 reveal hidden-initial">
                         <h2 className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 tracking-tight mb-3">
                             OUR IMPACT
                         </h2>
-                        <p className="text-white font-bold max-w-xl mx-auto">
+                        <p className="text-white font-bold max-w-xl mx-auto text-sm md:text-base">
                             Measured in operational KPIs: screening speed, cohort stability, and early risk detection.
                         </p>
                     </div>
 
-                    <div className="flex flex-row gap-0.5 md:gap-6 w-full items-stretch justify-between">
-                        <div className="flex-1 min-w-0 reveal-left hidden-initial delay-100 text-center p-0.5 md:p-6 rounded-lg md:rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-amber-500/30 hover:border-amber-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(245,158,11,0.2)]">
-                            <div className="w-15 h-15 md:w-16 mt-2 md:h-16 mx-auto mb-1 md:mb-4 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-500/30">
-                                <span className="text-[20px] md:text-3xl font-black text-amber-400">Time</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 w-full">
+                        <div className="reveal-left hidden-initial delay-100 text-center p-5 md:p-6 rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-amber-500/30 hover:border-amber-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(245,158,11,0.2)]">
+                            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-500/30">
+                                <span className="text-2xl md:text-3xl font-black text-amber-400">⏱</span>
                             </div>
-                            <h3 className="h-[12px] md:h-auto mt-10 flex items-center justify-center text-[5px] md:text-lg font-bold text-white mb-0.5 md:mb-2 leading-tight">Shorter decision cycles</h3>
-                            <p className="h-[150px] md:h-auto mt-12 flex items-start justify-center text-[4px] md:text-sm text-white/70 font-medium leading-tight">Faster screening and earlier go/no-go calls with consistent evidence.</p>
+                            <h3 className="text-base md:text-lg font-bold text-white mb-2">Shorter decision cycles</h3>
+                            <p className="text-sm text-white/70 font-medium leading-relaxed">Faster screening and earlier go/no-go calls with consistent evidence.</p>
                         </div>
 
-                        <div className="flex-1 min-w-0 reveal-bottom hidden-initial delay-200 text-center p-0.5 md:p-6 rounded-lg md:rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-orange-500/30 hover:border-orange-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(249,115,22,0.2)]">
-                            <div className="w-15 h-15 md:w-16 mt-2 md:h-16 mx-auto mb-1 md:mb-4 rounded-full bg-orange-500/20 flex items-center justify-center border border-orange-500/30">
-                                <span className="text-[20px] md:text-3xl font-black text-orange-400 tracking-tighter">Savings</span>
+                        <div className="reveal-bottom hidden-initial delay-200 text-center p-5 md:p-6 rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-orange-500/30 hover:border-orange-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(249,115,22,0.2)]">
+                            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-500/20 flex items-center justify-center border border-orange-500/30">
+                                <span className="text-2xl md:text-3xl font-black text-orange-400">💰</span>
                             </div>
-                            <h3 className="h-[12px] md:h-auto mt-13 flex items-center justify-center text-[5px] md:text-lg font-bold text-white mb-0.5 md:mb-2 leading-tight">Lower operational waste</h3>
-                            <p className="h-[150px] md:h-auto mt-10 flex items-start justify-center text-[4px] md:text-sm text-white/70 font-medium leading-tight">Reduce avoidable rework from amendments, cohort drift, and late surprises.</p>
+                            <h3 className="text-base md:text-lg font-bold text-white mb-2">Lower operational waste</h3>
+                            <p className="text-sm text-white/70 font-medium leading-relaxed">Reduce avoidable rework from amendments, cohort drift, and late surprises.</p>
                         </div>
 
-                        <div className="flex-1 min-w-0 reveal-right hidden-initial delay-300 text-center p-0.5 md:p-6 rounded-lg md:rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-red-500/30 hover:border-red-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(239,68,68,0.2)]">
-                            <div className="w-15 h-15 md:w-16  mt-2 md:h-16 mx-auto mb-1 md:mb-4 rounded-full bg-red-500/20 flex items-center justify-center border border-red-500/30">
-                                <span className="text-[20px] md:text-3xl font-black text-red-400">Success</span>
+                        <div className="reveal-right hidden-initial delay-300 text-center p-5 md:p-6 rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-red-500/30 hover:border-red-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(239,68,68,0.2)]">
+                            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-500/20 flex items-center justify-center border border-red-500/30">
+                                <span className="text-2xl md:text-3xl font-black text-red-400">📈</span>
                             </div>
-                            <h3 className="h-[12px] md:h-auto mt-12 flex items-center justify-center text-[5px] md:text-lg font-bold text-white mb-0.5 md:mb-2 leading-tight">Higher trial reliability</h3>
-                            <p className="h-[150px] md:h-auto mt-12 flex items-start justify-center text-[4px] md:text-sm text-white/70 font-medium leading-tight">Earlier detection of non-response and safety risk to protect endpoints.</p>
+                            <h3 className="text-base md:text-lg font-bold text-white mb-2">Higher trial reliability</h3>
+                            <p className="text-sm text-white/70 font-medium leading-relaxed">Earlier detection of non-response and safety risk to protect endpoints.</p>
                         </div>
                     </div>
                 </div>
@@ -512,18 +422,18 @@ export default function Home() {
                 <ProjectPyramid />
             </div>
 
-            <section className="relative z-10 min-h-[auto] md:min-h-screen flex items-center py-12 md:py-16 w-full">
+            <section className="relative z-10 min-h-[auto] flex items-center py-12 md:py-16 w-full">
                 <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
                     <div className="text-center mb-8 md:mb-12 reveal hidden-initial">
-                        <h2 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60 tracking-tight mb-4">
-                            OUR PILLARS
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60 tracking-tight mb-4 uppercase">
+                            Core Strategic Pillars
                         </h2>
-                        <p className="text-white/40 text-sm md:text-base max-w-xl mx-auto">
+                        <p className="text-cyan-400 text-sm md:text-base max-w-xl mx-auto font-bold">
                             Three foundational technologies powering the future of medicine
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 scale-[0.7] md:scale-100 origin-top">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         {projects.map((project: any, index) => {
                             const animationClass = index === 0 ? 'reveal-left' : index === 1 ? 'reveal-bottom' : 'reveal-right';
                             const delayClass = index === 0 ? 'delay-100' : index === 1 ? 'delay-300' : 'delay-500';
@@ -564,7 +474,7 @@ export default function Home() {
                                         }}
                                     />
 
-                                    <div className="relative h-36 md:h-44 overflow-hidden">
+                                    <div className="relative h-40 md:h-44 overflow-hidden">
                                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/95 z-10" />
                                         {project.image ? (
                                             <NextImage
@@ -657,12 +567,12 @@ export default function Home() {
                 </div>
             </section>
 
-            <section id="about" className="relative py-12 md:py-24 scroll-section">
-                <div className="max-w-[1400px] mx-auto px-4 md:px-6 space-y-24 md:space-y-32">
+            <section id="about" className="relative py-12 md:py-20 lg:py-24 scroll-section">
+                <div className="max-w-[1400px] mx-auto px-4 md:px-6 space-y-16 md:space-y-24 lg:space-y-32">
 
                     <div id="team" className="w-full text-center reveal hidden-initial scroll-section">
-                        <h2 className="text-3xl md:text-5xl font-bold  mb-6 " style={{ color: "#FFA500" }}>ENGINEERING THE IMPOSSIBLE</h2>
-                        <p className="text-lg font-bold md:text-xl text-white leading-relaxed mb-12 max-w-3xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 md:mb-6" style={{ color: "#FFA500" }}>ENGINEERING THE IMPOSSIBLE</h2>
+                        <p className="text-base md:text-lg lg:text-xl font-bold text-white leading-relaxed mb-8 md:mb-12 max-w-3xl mx-auto">
                             50+ years combined across AI model R&D and deployment, clinical modeling and simulation, and datacenter-scale infrastructure—so we can deliver both the science and the platform.
                         </p>
 
@@ -672,6 +582,95 @@ export default function Home() {
 
                         <div className="mt-12 text-sm text-white/40 tracking-[0.2em] uppercase font-bold">
                             BACKED BY INDUSTRY VETERANS FROM MIT, STANFORD & DEEPMIND
+                        </div>
+                    </div>
+
+                    <div id="advisory" className="w-full text-center reveal hidden-initial scroll-section mt-16 md:mt-24">
+                        
+                        <div className="inline-flex items-center gap-3 mb-6">
+                            <div className="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500/50" />
+                            <span className="text-xs font-mono text-cyan-400/80 tracking-[0.3em] uppercase">Mevreon Network</span>
+                            <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500/50" />
+                        </div>
+
+                        <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60">
+                                Advisory Board
+                            </span>
+                        </h2>
+
+                        <p className="text-lg font-bold md:text-xl text-white/60 leading-relaxed mb-12 max-w-3xl mx-auto">
+                            Industry leaders and academic pioneers guiding the development of biological intelligence and operational excellence at Mevreon.
+                        </p>
+
+                        {/* GRID */}
+                        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-6 lg:gap-8 text-left max-w-sm mx-auto md:max-w-none">
+                            
+                            {advisoryMembers.map((member) => (
+
+                                <div
+                                    key={member.id}
+                                    className="min-w-0 p-2 md:p-6 aspect-square md:aspect-auto rounded-xl md:rounded-3xl bg-slate-900 border border-white/10 group hover:border-cyan-500/50 flex flex-col items-center h-full relative overflow-hidden"
+                                >
+
+                                    {/* Desktop glow */}
+                                    <div className="absolute top-0 right-0 w-16 h-16 md:w-32 md:h-32 bg-cyan-500/5 rounded-full blur-2xl md:blur-3xl group-hover:bg-cyan-500/10 transition-colors duration-500 hidden md:block" />
+
+                                    {/* Image */}
+                                    <div className="relative w-10 h-10 md:w-24 md:h-24 mx-auto mb-1 md:mb-6">
+                                        <div className="absolute inset-0 rounded-full border border-cyan-500/20 group-hover:border-cyan-400/50 transition-colors duration-500 z-10" />
+
+                                        <div className="w-full h-full rounded-full overflow-hidden object-cover relative z-0">
+                                            <img
+                                                src={member.image}
+                                                alt={member.name}
+                                                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                                                referrerPolicy="no-referrer"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="text-center flex-grow flex flex-col z-10 w-full overflow-hidden">
+
+                                        <h3 className="text-[9px] md:text-xl font-bold text-white mb-0.5 md:mb-1 group-hover:text-cyan-300 transition-colors leading-tight truncate px-1">
+                                            {member.name}
+                                        </h3>
+
+                                        <p className="text-[7px] md:text-xs font-mono text-cyan-500/80 mb-1 md:mb-4 leading-tight truncate px-1">
+                                            {member.role}
+                                        </p>
+
+                                        {/* Desktop description */}
+                                        <p className="text-sm text-white/60 leading-relaxed mb-6 flex-grow hidden md:block">
+                                            {member.details}
+                                        </p>
+
+                                        {/* Desktop social */}
+                                        <div className="mt-auto pt-4 border-t border-white/10 justify-center hidden md:flex">
+                                            <a
+                                                href={member.linkedin}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-white/40 hover:text-[#0A66C2] transition-colors p-2 hover:bg-white/5 rounded-full"
+                                                aria-label={`${member.name}'s LinkedIn`}
+                                            >
+                                                <svg
+                                                    className="w-5 h-5 fill-current"
+                                                    viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            ))}
+
                         </div>
                     </div>
 
@@ -693,24 +692,23 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="relative w-full reveal hidden-initial max-w-6xl mx-auto my-16 md:my-28 ">
+                    <div className="relative w-full reveal hidden-initial max-w-6xl mx-auto my-10 md:my-16 lg:my-28">
                         <div className="relative group">
                             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 rounded-[2rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-
-                            <div className="relative bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl">
+                            <div className="relative bg-slate-900/60 backdrop-blur-sm border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl" style={{ height: '420px' }}>
                                 <NextImage
                                     src="/Photos/extraimage.png"
-                                    alt="OmniTwin Factory Technical Workflow"
-                                    width={1200}
-                                    height={800}
-                                    className="w-full h-[500px] object-contain"
+                                    alt="Mevreon Digital Twin Flow"
+                                    fill
+                                    className="object-contain opacity-100"
+                                    priority={false}
                                 />
                             </div>
                         </div>
                     </div>
 
-                    <div className="relative w-full reveal hidden-initial max-w-6xl mx-auto mt-20px">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">THE ROAD TO IN-SILICO CERTAINTY</h2>
+                    <div className="relative w-full reveal hidden-initial max-w-6xl mx-auto">
+                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-10 md:mb-12 uppercase tracking-widest">The Roadmap to In-Silico Validation</h2>
                         <RoadmapTimeline />
                     </div>
                 </div>
@@ -721,12 +719,12 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-indigo-500/5 -z-10" />
 
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tighter drop-shadow-[0_0_25px_rgba(255,255,255,0.3)]">
-                        READY TO <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-indigo-300">SEE MORE?</span>
+                        REQUEST A <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-indigo-300">STRATEGIC CONSULTATION</span>
                     </h2>
                     <p className="text-base md:text-lg text-white/70 mb-6 max-w-2xl mx-auto leading-relaxed">
-                        Request access for a walkthrough of the OmniTwin Factory and sample decision packs.
+                        Request formal access to the OmniTwin™ ecosystem and standardized decision pack documentation.
                     </p>
-                    <p className="text-xs md:text-sm text-white/40 mb-8 md:mb-10 max-w-xl mx-auto italic">
+                    <p className="text-xs md:text-sm text-cyan-400 mb-8 md:mb-10 max-w-xl mx-auto font-bold italic">
                         We’ll share the right view based on your role: sponsor, CRO, hospital, or researcher.
                     </p>
 
@@ -821,7 +819,7 @@ export default function Home() {
                                 )}
                             </button>
 
-                            <p className="text-xs text-white/30 mt-4">
+                            <p className="text-xs text-white/80 mt-4 font-semibold">
                                 By submitting, you agree to receive communications from Mevreon.ai. We respect your privacy.
                             </p>
                         </form>
