@@ -4,8 +4,8 @@ import React from 'react';
 
 export default function ProjectPyramid() {
     const project = {
-        title: "From Multimodal Ingestion to Standardized Decision Packs",
-        subtitle: "Enterprise-grade scaling for clinical programs: multiple Digital Twins per disease state, protocol, and endpoint.",
+        title: "From Fragmented Data to Simulated Decision Packs",
+        subtitle: "Built for scale across programs: multiple twins per disease, protocol, and endpoint.",
         description: "",
         steps: [
             {
@@ -278,11 +278,9 @@ export default function ProjectPyramid() {
                 <div className="mt-12 md:mt-16 text-center">
                     <div className="inline-flex flex-col items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                         <span className="text-lg font-mono text-white/90 uppercase tracking-widest leading-relaxed">
-                            Harnessing physics-informed AI and high-fidelity synthetic data to accelerate therapeutic cycles — bridging data silos via privacy-preserving architectures.
-                        </span>
+Harnessing physics-driven AI + synthetic data to speed cures – breaking data silos without compromising privacy                        </span>
                         <span className="text-md font-mono text-white/90 uppercase tracking-widest text-yellow-500 mt-2">
-                            Deploying global Digital Twin frameworks for advanced trial operations and precision clinical medicine.
-                        </span>
+Building a global digital twin factory for trial operations and precision medicine—privacy-first, validation-driven, deployment-ready.                        </span>
                     </div>
                 </div>
             </div>

@@ -6,10 +6,68 @@ import NextImage from "next/image";
 
 export const TeamSection = () => {
     const team = [
-        { name: "Nishant Agrawal", role: "Co-Founder & CEO", experience: "ex-intel Principal Scientist, LLMs on 10k+ GPUs, 22+ years leading AI/HPC innovation, 10+ patents & 20+ publications", award: "Gordon Bell Prize Finalist(2024), BRICS Young Scientist(Top-10 India)", img: "/Nishant.png" },
-        { name: "TBA", role: "Co-Founder", experience: "Chief Scientist - HPC & AI for Science, 20+ years in Scientific Computing", award: "Gordon Bell Prize Winner(COVID-19 therapeutics), Best Paper Award(SC, MLSys, ICLR)", img: "" },
-        { name: "TBA", role: "Co-Founder", experience: "Research Scientist - AI & GPU/LLM System Architecture(TBA Research Lab), 15+ years in Simulation/Modelling, McKinsey", award: "Best Paper Award(AI/HPC, ISCA, MIRCO), PhD in CS(UMass Amherst USA)", img: "" },
-        { name: "Tushar Bopche", role: "Co-Founder", experience: "Serial entrepreneur - fintech/edtech, GTM & ops, Product head roles at leading fintech, Deep expertise in marketing, strategy, Partnerships, fundraising, growth", award: "", img: "/Tushar.png" },
+        {
+            name: "Nishant Agrawal",
+            role: "Co-Founder & CEO",
+            experience: [
+                "ex-intel Principal Scientist",
+                "LLMs on 10k+ GPUs",
+                "22+ years leading AI/HPC innovation",
+                "10+ patents & 20+ publications"
+            ],
+            award: [
+                "Gordon Bell Prize Finalist(2024)",
+                "BRICS Young Scientist(Top-10 India)"
+            ],
+            img: "/Nishant.png"
+        },
+        {
+            name: "TBA",
+            role: "Co-Founder",
+            experience: [
+                "Chief Scientist - HPC & AI for Science",
+                "20+ years in Scientific Computing"
+            ],
+            award: [
+                "Gordon Bell Prize Winner(COVID-19 therapeutics)",
+                "Best Paper Award(SC",
+                "MLSys",
+                "ICLR)"
+            ],
+            img: ""
+        },
+        {
+            name: "TBA",
+            role: "Co-Founder",
+            experience: [
+                "Research Scientist - AI & GPU/LLM System Architecture(TBA Research Lab)",
+                "15+ years in Simulation/Modelling",
+                "McKinsey"
+            ],
+            award: [
+                "Best Paper Award(AI/HPC",
+                "ISCA",
+                "MIRCO)",
+                "PhD in CS(UMass Amherst USA)"
+            ],
+            img: ""
+        },
+        {
+            name: "Tushar Bopche",
+            role: "Co-Founder",
+            experience: [
+                "Serial enterprenuer - fintech/edtech",
+                "GTM & ops",
+                "Product head roles at leading fintech",
+                "Deep expertise in marketing",
+                "startegy",
+                "Partnerships",
+                "fundraising",
+                "growth"
+            ],
+            award: [],
+            img: "/Tushar.png"
+        },
     ];
 
     return (
@@ -53,8 +111,8 @@ export const TeamSection = () => {
                         { border: 'rgba(251,191,36,0.45)', glow: 'rgba(251,191,36,0.2)', dot: '#fbbf24', grad: 'from-amber-400 to-orange-500' },
                     ];
                     const c = accentColors[i % accentColors.length];
-                    const hasExperience = member.experience && member.experience.trim().length > 0;
-                    const hasAwards = member.award && member.award.trim().length > 0;
+                    const hasExperience = Array.isArray(member.experience) ? member.experience.length > 0 : !!member.experience;
+                    const hasAwards = Array.isArray(member.award) ? member.award.length > 0 : !!member.award;
 
                     return (
                         <div key={i} className="relative team-card">
@@ -150,21 +208,35 @@ export const TeamSection = () => {
                                 {/* Details */}
                                 <div className="w-full flex flex-col gap-3 text-left relative z-10 flex-grow">
                                     {hasExperience && (
-                                        <div>
-                                            <div className="flex items-center gap-2 mb-1.5">
+                                        <div className="mb-4">
+                                            <div className="flex items-center gap-2 mb-2">
                                                 <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(34,211,238,0.8)]" />
-                                                <p className="text-[8px] text-cyan-400/60 uppercase tracking-widest font-bold">Experience</p>
+                                                <p className="text-[10px] text-cyan-400/80 uppercase tracking-widest font-bold">EXPERIENCE DATABASE</p>
                                             </div>
-                                            <p className="text-[11px] md:text-xs text-white/75 leading-relaxed font-mono">{member.experience}</p>
+                                            <ul className="space-y-1.5">
+                                                {member.experience.map((exp: string, idx: number) => (
+                                                    <li key={idx} className="flex items-start text-[11px] md:text-xs text-white/75 leading-relaxed font-mono">
+                                                        <span className="text-cyan-400/60 mr-2">›</span>
+                                                        <span>{exp}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     )}
                                     {hasAwards && (
                                         <div>
-                                            <div className="flex items-center gap-2 mb-1.5">
+                                            <div className="flex items-center gap-2 mb-2">
                                                 <div className="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_6px_rgba(167,139,250,0.8)]" />
-                                                <p className="text-[8px] text-purple-400/60 uppercase tracking-widest font-bold">Honours & Awards</p>
+                                                <p className="text-[10px] text-purple-400/80 uppercase tracking-widest font-bold">HONORS & AWARDS</p>
                                             </div>
-                                            <p className="text-[11px] md:text-xs text-white/90 leading-relaxed font-mono font-semibold">{member.award}</p>
+                                            <ul className="space-y-1.5">
+                                                {member.award.map((awd: string, idx: number) => (
+                                                    <li key={idx} className="flex items-start text-[11px] md:text-xs text-white/90 leading-relaxed font-mono font-semibold">
+                                                        <span className="text-purple-400 mr-2">★</span>
+                                                        <span>{awd}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     )}
                                 </div>

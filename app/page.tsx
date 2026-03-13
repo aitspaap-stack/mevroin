@@ -359,7 +359,7 @@ export default function Home() {
                                     </div>
                                     <h3 className="text-lg md:text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Why It Works</h3>
                                     <p className="text-[10px] md:text-xs font-mono text-red-400/80 tracking-widest uppercase mb-4 md:mb-6">The Platform</p>
-                                    <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-red-500/30 pl-4">UNIFYING PHYSICS + AI</p>
+                                    <p className="text-xs md:text-sm text-white/60 mb-4 md:mb-6 font-medium leading-relaxed border-l-2 border-red-500/30 pl-4">UNIFYING PHYISCS + AI</p>
                                     <ul className="space-y-3 md:space-y-4">
                                         <li className="flex items-start gap-3 text-xs md:text-sm text-white/70 leading-relaxed">
                                             <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5 md:mt-2 shrink-0 shadow-[0_0_8px_rgba(251,146,60,0.6)]" />
@@ -573,7 +573,7 @@ export default function Home() {
                     <div id="team" className="w-full text-center reveal hidden-initial scroll-section">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 md:mb-6" style={{ color: "#FFA500" }}>ENGINEERING THE IMPOSSIBLE</h2>
                         <p className="text-base md:text-lg lg:text-xl font-bold text-white leading-relaxed mb-8 md:mb-12 max-w-3xl mx-auto">
-                            50+ years combined across AI model R&D and deployment, clinical modeling and simulation, and datacenter-scale infrastructure.
+                            50+ years combined across AI model R&D and deployment, clinical modeling and simulation, and datacenter-scale infrastructure—so we can deliver both the science and the platform.
                         </p>
 
                         <div className="w-full my-12">
@@ -687,7 +687,7 @@ export default function Home() {
                         </div>
 
                         <div className="grid grid-cols-2 gap-3 md:gap-6">
-                            <Stat number="Multimodal" label="Ingestion (EHR + imaging + omics)" />
+                            <Stat number="OmniTwin" label="AI Platform" />
                             <Stat number="Twins" label="Patient + cohort generation" />
                             <Stat number="What-if" label="Simulation-backed analysis" />
                             <Stat number="Audit-ready" label="Decision packs" />
@@ -821,7 +821,7 @@ export default function Home() {
                                 )}
                             </button>
 
-                            <p className="text-xs text-white/80 mt-4 font-semibold">
+                            <p className="text-xs text-white/80 mt-6 font-semibold text-center block">
                                 By submitting, you agree to receive communications from Mevreon.ai. We respect your privacy.
                             </p>
                         </form>
