@@ -1215,11 +1215,11 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                                     transform: `translateX(${xOffset}px)`
                                 }}
                             >
-                                <div className={`px-6 md:px-10 lg:px-16 pt-[80px] md:pt-[90px] lg:pt-[110px] max-w-lg lg:max-w-xl ${beat.align === 'left' ? 'text-left' :
+                                <div className={`px-6 md:px-10 lg:px-16 pt-[80px] md:pt-[90px] lg:pt-[110px] max-w-lg lg:max-w-4xl xl:max-w-5xl ${beat.align === 'left' ? 'text-left' :
                                     beat.align === 'right' ? 'text-right' : 'text-center'
                                     }`}>
                                     {beat.title && (
-                                        <h1 className={`text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-2 md:mb-6 tracking-tight leading-[1.1] ${beat.align === 'center' || isMobile ? 'text-center mx-auto' :
+                                        <h2 className={`text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight drop-shadow-2xl ${beat.align === 'center' || isMobile ? 'text-center mx-auto' :
                                             beat.align === 'right' ? 'text-right ml-auto' : 'text-left mr-auto'
                                             }`}>
                                             {beat.title.split(" ").map((word, w_i) => (
@@ -1231,10 +1231,10 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                                                     {word}&nbsp;
                                                 </span>
                                             ))}
-                                        </h1>
+                                        </h2>
                                     )}
                                     {beat.subtitle && (
-                                        <div className={`relative mb-8 max-w-xl ${beat.align === 'center' || isMobile ? 'mx-auto' : beat.align === 'right' ? 'ml-auto' : 'mr-auto'}`}>
+                                        <div className={`relative mb-8 max-w-xl lg:max-w-2xl xl:max-w-3xl ${beat.align === 'center' || isMobile ? 'mx-auto' : beat.align === 'right' ? 'ml-auto' : 'mr-auto'}`}>
                                             <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_rgba(6,182,212,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] rounded-xl pointer-events-none md:hidden" />
 
                                             <p className={`relative text-base md:text-lg lg:text-2xl text-white/90 leading-relaxed font-light px-6 py-4 md:py-0 
@@ -1256,7 +1256,7 @@ const ScrollytellingHero: React.FC<ScrollytellingHeroProps> = ({ onComplete }) =
                                     )}
 
                                     {beat.footer && (
-                                        <div className={`mt-2 max-w-xl ${beat.align === 'center' ? 'mx-auto text-center' : beat.align === 'right' ? 'ml-auto text-right' : 'mr-auto text-left'}`}>
+                                        <div className={`mt-2 max-w-xl lg:max-w-2xl xl:max-w-3xl ${beat.align === 'center' ? 'mx-auto text-center' : beat.align === 'right' ? 'ml-auto text-right' : 'mr-auto text-left'}`}>
                                             <p className="text-[16px] md:text-xs text-blue-100/80 font-bold  font-sans tracking-wider opacity-0 animate-reveal-word" style={{ animationDelay: '0.8s' }}>
                                                 {beat.footer}
                                             </p>

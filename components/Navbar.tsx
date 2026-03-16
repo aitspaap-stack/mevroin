@@ -28,8 +28,8 @@ const Navbar = () => {
     return (
         <>
             <nav className={`fixed top-2 md:top-4 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'translate-y-[-5px]' : ''}`}>
-                <div className="max-w-[98%] md:max-w-7xl mx-auto">
-                    <div className="relative bg-slate-900/60 backdrop-blur-3xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] rounded-full px-3 py-2 md:px-5 md:py-2.5 lg:px-6 lg:py-3 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] transition-all duration-300">
+                <div className="max-w-[98%] 2xl:max-w-[1700px] mx-auto px-2 md:px-4">
+                    <div className="relative bg-slate-900/60 backdrop-blur-3xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] rounded-full px-3 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] transition-all duration-300">
                         
                         {/* Left Side: Logo (Desktop) / Hamburger (Mobile) */}
                         <div className="flex justify-start items-center">
@@ -85,7 +85,7 @@ const Navbar = () => {
                                         <button
                                             key={item}
                                             onClick={() => scrollTo(item.toLowerCase().replace(' ', '-'))}
-                                            className="px-1.5 lg:px-2 py-0.5 text-[9px] lg:text-[11px] font-bold text-white/70 hover:text-cyan-300 uppercase tracking-tighter lg:tracking-widest transition-colors whitespace-nowrap"
+                                            className="px-1.5 lg:px-3 py-0.5 text-[9px] lg:text-[13px] font-bold text-white/70 hover:text-cyan-300 uppercase tracking-tighter lg:tracking-widest transition-colors whitespace-nowrap"
                                         >
                                             {item}
                                         </button>

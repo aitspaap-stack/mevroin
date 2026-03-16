@@ -102,7 +102,7 @@ export const TeamSection = () => {
                 }
             `}</style>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 w-full max-w-[1440px] mx-auto px-4 md:px-8">
                 {team.map((member, i) => {
                     const accentColors = [
                         { border: 'rgba(34,211,238,0.45)', glow: 'rgba(34,211,238,0.2)', dot: '#22d3ee', grad: 'from-cyan-500 to-blue-500' },
@@ -333,7 +333,7 @@ export const RoadmapTimeline = () => {
                 style={{ height: `calc(${progress * 100}% - 24px)` }}
             />
 
-            <div className="relative flex flex-col md:flex-row justify-between w-full max-w-5xl mx-auto gap-12 md:gap-0">
+            <div className="relative flex flex-col md:flex-row justify-between w-full max-w-[1440px] mx-auto gap-12 md:gap-0 px-4 md:px-8">
                 {phases.map((phase, i) => {
                     const active = progress > (i / (phases.length - 1)) - 0.1;
                     return (

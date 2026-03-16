@@ -76,35 +76,35 @@ export default function ProjectPyramid() {
     };
 
     return (
-        <section id="projects" className="relative min-h-screen w-full bg-slate-950 overflow-hidden py-12 md:py-20 flex items-center">
+        <section id="projects" className="relative min-h-screen w-full bg-slate-950 overflow-hidden py-12 md:py-20 xl:py-32 flex items-center">
             <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(2,6,23,1)_0%,rgba(15,23,42,0.8)_50%,rgba(2,6,23,1)_100%)] pointer-events-none" />
             <div className="absolute top-[5%] left-[15%] w-96 h-96 rounded-full blur-[120px] bg-cyan-500/15" />
             <div className="absolute top-[35%] right-[10%] w-96 h-96 rounded-full blur-[120px] bg-purple-500/15" />
             <div className="absolute bottom-[35%] left-[10%] w-96 h-96 rounded-full blur-[120px] bg-pink-500/15" />
             <div className="absolute bottom-[5%] right-[15%] w-96 h-96 rounded-full blur-[120px] bg-amber-500/15" />
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-            <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 w-full max-w-6xl xl:max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12 md:mb-16">
                     <div className="inline-flex items-center gap-3 mb-4">
                         <div className="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500/50" />
                         <span className="text-xs font-mono text-cyan-400/80 tracking-[0.3em] uppercase">Core Technology</span>
                         <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500/50" />
                     </div>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-3">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl 2xl:text-7xl font-black tracking-tight mb-4">
                         <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/40">
                             {project.title}
                         </span>
                     </h2>
-                    <p className="text-sm md:text-base text-white/90 max-w-2xl mx-auto font-bold mb-2">
+                    <p className="text-sm md:text-lg text-white/90 max-w-3xl mx-auto font-bold mb-3">
                         {project.subtitle}
                     </p>
-                    <p className="text-xs md:text-sm text-white/30 max-w-3xl mx-auto">
+                    <p className="text-xs md:text-base text-white/30 max-w-4xl mx-auto">
                         {project.description}
                     </p>
                 </div>
-                <div className="relative max-w-5xl mx-auto">
+                <div className="relative max-w-5xl xl:max-w-6xl 2xl:max-w-[1500px] mx-auto">
                     <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500/50 via-purple-500/50 via-pink-500/50 to-amber-500/50 hidden md:block -translate-x-1/2" />
-                    <div className="space-y-8 md:space-y-12">
+                    <div className="space-y-8 md:space-y-12 xl:space-y-20">
                         {project.steps.map((step, index) => {
                             const isEven = index % 2 === 0;
 
@@ -116,7 +116,7 @@ export default function ProjectPyramid() {
                                 >
                                     <div className={`w-full md:w-[calc(50%-2rem)] ${isEven ? 'md:text-right' : 'md:text-left'}`}>
                                         <div
-                                            className="group relative rounded-2xl md:rounded-3xl bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-slate-950 backdrop-blur-xl border-2 overflow-hidden transition-all duration-300"
+                                            className="group relative rounded-2xl md:rounded-3xl bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-slate-950 backdrop-blur-xl border-2 overflow-hidden transition-all duration-300 xl:p-4"
                                             style={{
                                                 borderColor: `${step.color}40`,
                                                 boxShadow: `0 0 60px ${step.color}25, 0 20px 40px -15px rgba(0,0,0,0.6)`
@@ -134,7 +134,7 @@ export default function ProjectPyramid() {
                                                     background: `radial-gradient(circle at ${isEven ? 'right' : 'left'}, ${step.color}40, transparent 70%)`
                                                 }}
                                             />
-                                            <div className={`relative z-10 p-6 md:p-8 space-y-4 ${isEven ? 'md:items-end' : 'md:items-start'}`}>
+                                            <div className={`relative z-10 p-6 md:p-8 xl:p-12 space-y-4 ${isEven ? 'md:items-end' : 'md:items-start'}`}>
                                                 <div className={`flex items-start gap-4 ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'} flex-row`}>
                                                     <div
                                                         className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-4xl md:text-5xl flex-shrink-0 transition-transform duration-300"
@@ -148,7 +148,7 @@ export default function ProjectPyramid() {
                                                     </div>
                                                     <div className={`flex-1 ${isEven ? 'md:text-right' : 'md:text-left'} text-left`}>
                                                         <h3
-                                                            className="text-3xl md:text-4xl font-black tracking-tight mb-1"
+                                                            className="text-3xl md:text-4xl 2xl:text-5xl font-black tracking-tight mb-2"
                                                             style={{
                                                                 color: step.color,
                                                                 textShadow: `0 0 30px ${step.color}50`
@@ -167,7 +167,7 @@ export default function ProjectPyramid() {
                                                         background: `linear-gradient(to ${isEven ? 'left' : 'right'}, ${step.color}, transparent)`
                                                     }}
                                                 />
-                                                <p className={`text-sm md:text-base text-white/70 leading-relaxed ${isEven ? 'md:text-right' : 'md:text-left'} text-left`}>
+                                                <p className={`text-sm md:text-lg text-white/70 leading-relaxed ${isEven ? 'md:text-right' : 'md:text-left'} text-left`}>
                                                     {step.description}
                                                 </p>
                                                 {step.images && step.images.length > 0 && (
@@ -246,11 +246,11 @@ export default function ProjectPyramid() {
                                                     <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: step.color }} />
                                                     <span className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-[0.4em]">Integrated Dashboard</span>
                                                 </div>
-                                                <p className="text-xl lg:text-2xl font-black text-white leading-tight tracking-tight">
+                                                <p className="text-xl lg:text-2xl 2xl:text-4xl font-black text-white leading-tight tracking-tight">
                                                     {step.description}
                                                 </p>
                                                 <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-2" />
-                                                <p className="text-sm lg:text-base text-cyan-400 font-mono leading-relaxed uppercase tracking-wider">
+                                                <p className="text-sm lg:text-base 2xl:text-lg text-cyan-400 font-mono leading-relaxed uppercase tracking-wider">
                                                     {step.detail}
                                                 </p>
                                                 <div className="flex gap-4 mt-4 opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
